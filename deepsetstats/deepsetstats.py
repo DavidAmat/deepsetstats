@@ -1,7 +1,6 @@
-import sys
-from collections import defaultdict
 import os
+from collections import defaultdict
+
 dd = defaultdict(list)
-print(
-        os.listdir(".")
-        )
+print(os.listdir("."))
+print("h")
