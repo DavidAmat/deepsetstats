@@ -9,6 +9,7 @@ __pycache__/
 *.jpg
 *.png
 *.jpeg
+*.pdf
 
 # Distribution / packaging
 .Python
@@ -16,6 +17,7 @@ build/
 develop-eggs/
 dist/
 downloads/
+resources/
 eggs/
 .eggs/
 lib/
