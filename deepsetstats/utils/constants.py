@@ -35,6 +35,9 @@ RGB_LINE_GREENSET_AOd = np.array((125, 180, 224))
 #      Gradient Lines
 # -------------------------
 GRAD_TOL = 15
+GRAD_LINE_MAX_WIDTH = 10
+TOL_RGB_MIN_DIFF = 25
+TOL_RGB_MAX_DIFF = 45
 D_GRAD_LINES = {
     "CLAY": {"COURT": RGB_CLAY, "LINE_CLEAN": RGB_LINE_CLAYc, "LINE_DIRTY": RGB_LINE_CLAYd},
     "GREENSET_US": {
