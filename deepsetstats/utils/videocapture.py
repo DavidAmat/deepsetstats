@@ -46,11 +46,11 @@ class VideoClass:
         return mRGB, COURT_TYPE
 
     @staticmethod
-    def get_line_mask(self, img, court_type):
+    def get_line_mask(img, court_type, tol=c.TOL_LINE):
         # ------------------------- #
         #     Line Tolerance
         # ------------------------- #
-        RGB_LINE_DIRTY_TOL = c.D_GRAD_LINES[court_type]["LINE_DIRTY"] - c.TOL_LINE
+        RGB_LINE_DIRTY_TOL = c.D_GRAD_LINES[court_type]["LINE_DIRTY"] - tol
 
         # ------------------------- #
         #     Get Mask
@@ -82,4 +82,9 @@ class VideoClass:
     @staticmethod
     def show_frame(frame_rgb):
         plt.imshow(frame_rgb)
+        plt.show()
+
+    @staticmethod
+    def show_gray(frame_gray):
+        plt.imshow(frame_gray, cmap="Greys")
         plt.show()
