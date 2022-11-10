@@ -5,7 +5,7 @@ import numpy as np
 # -------------------------
 #      Paths
 # -------------------------
-PATH_VIDS = "/tmp/youtube"
+PATH_VIDS = "/Users/davidamat/Documents/BackUp/DeepSetStats"
 
 # -------------------------
 #      RGB Courts
@@ -21,20 +21,36 @@ LIST_COURTS = ["CLAY", "GREENSET_US", "GRASS", "GRASS", "GREENSET_AO"]
 # -------------------------
 #      RGB Lines
 # -------------------------
-TOL_LINE = np.array([15, 10, 10])
 RGB_LINE_CLAYc = np.array((234, 177, 153))
 RGB_LINE_CLAYd = np.array((189, 130, 107))
 RGB_LINE_GREENSET_USc = np.array((231, 233, 238))
 RGB_LINE_GREENSET_USd = np.array((193, 202, 224))
 RGB_LINE_GRASSc = np.array((244, 232, 226))
-RGB_LINE_GRASSd = np.array((228, 199, 196))
+RGB_LINE_GRASSd = np.array((170, 168, 134))
 RGB_LINE_GREENSET_AOc = np.array((200, 228, 240))
 RGB_LINE_GREENSET_AOd = np.array((125, 180, 224))
 
 # -------------------------
+#      Line Toleratences
+# -------------------------
+# GRASS:
+#   Dirty serve line: 170, 168, 134
+#   Dirty end line: 247, 220, 214
+#   Green grass: 150, 150, 120
+#   Dark grass: 135, 131, 88
+
+
+TOL_LINE = {
+    "CLAY": np.array([15, 10, 10]),
+    "GREENSET_US": np.array([15, 10, 10]),
+    "GRASS": np.array([20, 10, 10]),
+    "GREENSET_AO": np.array([15, 10, 10]),
+}
+GRAD_TOL = 15
+
+# -------------------------
 #      Gradient Lines
 # -------------------------
-GRAD_TOL = 15
 GRAD_LINE_MAX_WIDTH = 10
 TOL_RGB_MIN_DIFF = 25
 TOL_RGB_MAX_DIFF = 45

@@ -46,7 +46,15 @@ class VideoClass:
         return mRGB, COURT_TYPE
 
     @staticmethod
-    def get_line_mask(img, court_type, tol=c.TOL_LINE):
+    def _get_tol_from_court_type(court_type=None):
+        if court_type == "GRASS":
+            return c.TOL_LINE["GRASS"]
+
+    def get_line_mask(self, img, court_type):
+
+        # Get the tolerance according to the court_type
+        tol = self._get_tol_from_court_type(court_type)
+
         # ------------------------- #
         #     Line Tolerance
         # ------------------------- #
