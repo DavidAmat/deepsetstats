@@ -32,6 +32,7 @@ torch = { url = "https://download.pytorch.org/whl/cpu/torch-1.12.0-cp38-none-mac
 opencv-python = "^4.6.0.66"
 matplotlib = "^3.6.1"
 sympy = "^1.11.1"
+scikit-image = "^0.19.3"
 
 
 [tool.poetry.dev-dependencies]
