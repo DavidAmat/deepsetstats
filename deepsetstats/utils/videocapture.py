@@ -11,6 +11,7 @@ class VideoClass:
         self.cap.set(1, 1)  # take one frame
         ret, frame = self.cap.read()
         self.h, self.w, self.ch = frame.shape
+        self.vis = Visualizer()
 
     def get_frame(self, frame_query, to_gray=False):
         # Where frame_no is the frame you want
@@ -96,3 +97,36 @@ class VideoClass:
     def show_gray(frame_gray):
         plt.imshow(frame_gray, cmap="Greys")
         plt.show()
+
+
+class Visualizer:
+    def __init__(self) -> None:
+        pass
+
+    @staticmethod
+    def display_hue(img_hsv):
+        plt.figure(num=None, figsize=(8, 6), dpi=80)
+        plt.imshow(img_hsv[:, :, 0], cmap="hsv")
+        plt.colorbar()
+
+    @staticmethod
+    def display_as_hsv(img):
+
+        img_hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+
+        hsv_list = ["Hue", "Saturation", "Value"]
+        fig, ax = plt.subplots(1, 3, figsize=(15, 7), sharey=True)
+
+        ax[0].imshow(img_hsv[:, :, 0], cmap="hsv")
+        ax[0].set_title(hsv_list[0], fontsize=20)
+        ax[0].axis("off")
+
+        ax[1].imshow(img_hsv[:, :, 1], cmap="Greys")
+        ax[1].set_title(hsv_list[1], fontsize=20)
+        ax[1].axis("off")
+
+        ax[2].imshow(img_hsv[:, :, 2], cmap="gray")
+        ax[2].set_title(hsv_list[2], fontsize=20)
+        ax[2].axis("off")
+
+        fig.tight_layout()
