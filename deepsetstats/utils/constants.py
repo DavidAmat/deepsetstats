@@ -14,6 +14,7 @@ RGB_CLAY = np.array((183, 115, 84))
 RGB_US = np.array((100, 115, 159))
 RGB_WBl = np.array((154, 152, 114))
 RGB_WBd = np.array((137, 133, 88))
+RGB_WBsand = np.array((180, 152, 152))
 RGB_AO = np.array((108, 156, 196))
 RGB_COURTS = np.vstack((RGB_CLAY, RGB_US, RGB_WBl, RGB_WBd, RGB_AO))
 LIST_COURTS = ["CLAY", "GREENSET_US", "GRASS", "GRASS", "GREENSET_AO"]
@@ -29,6 +30,11 @@ RGB_LINE_GRASSc = np.array((244, 232, 226))
 RGB_LINE_GRASSd = np.array((170, 168, 134))
 RGB_LINE_GREENSET_AOc = np.array((200, 228, 240))
 RGB_LINE_GREENSET_AOd = np.array((125, 180, 224))
+
+# -------------------------
+#      Top COLORS
+# -------------------------
+
 
 # -------------------------
 #      Line Toleratences
