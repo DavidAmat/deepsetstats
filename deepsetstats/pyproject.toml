@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "deepsetstats"
+version = "0.0.1"
+description = "deepsetstats"
+authors = ["David Amat <daolondrizdaolondriz@gmail.com>"]
+
+[[tool.poetry.source]]
+name="pypi"
+default = true
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+numpy="^1.23.5"
+pandas=">=1.5.3,<2.0.0"
+pydantic = "^2.1.1"
+importlib-metadata = "^6.8.0"
+google-api-python-client = "^2.96.0"
+beautifulsoup4 = "^4.12.2"
+pyarrow = "^12.0.1"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+locust = "^1.4.3"
+flake8 = "^3.9.0"
+pytest-cov = "^2.11.1"
+mock = "^4.0.3"
+pre-commit = "^2.11.1"
+black = "^21.12b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
