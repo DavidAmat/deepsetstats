@@ -1,0 +1,29 @@
+//.vscode/launch.json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Dataset Video Downloader",
+            "type": "python",
+            "python": "/usr/local/bin/python",
+            "request": "launch",
+            "program": "/usr/src/app/deepsetstats/dataset/video_downloader.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/usr/src/app",
+        },
+        {
+            "name": "Debug Dataset Tournaments",
+            "type": "python",
+            "python": "/usr/local/bin/python",
+            "request": "launch",
+            "program": "/usr/src/app/deepsetstats/dataset/tournaments/get_atp_tournaments.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/usr/src/app",
+        },
+    ]
+}
