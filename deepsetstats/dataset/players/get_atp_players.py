@@ -1,4 +1,5 @@
 import os
+import pickle
 import re
 
 import pandas as pd
@@ -133,3 +134,13 @@ for dt_rank in results:
     df_dt_rank["date_rank"] = dt_rank
     df_final = pd.concat([df_final, df_dt_rank])
 df_final.to_parquet(PATH_PLAYERS_RANK, engine="pyarrow")
+
+
+# Saving final results flag
+PATH_FLAGS_COUNTRIES = "deepsetstats/dataset/players/flags/flags.pickle"
+# Open the pickle file in binary read mode
+with open(PATH_FLAGS_COUNTRIES, "wb") as file:
+    # Load the dictionary from the pickle file
+    pickle.dump(results_flag, file)
+
+print("Dumped flags into pickle:", PATH_FLAGS_COUNTRIES)
