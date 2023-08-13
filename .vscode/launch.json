@@ -25,5 +25,18 @@
             "justMyCode": true,
             "cwd": "/usr/src/app",
         },
+        {
+            "name": "Debug Dataset Players",
+            "type": "python",
+            "python": "/usr/local/bin/python",
+            "request": "launch",
+            "program": "/usr/src/app/deepsetstats/dataset/players/get_atp_players.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/usr/src/app",
+            "env": {
+                "PYDEVD_WARN_SLOW_RESOLVE_TIMEOUT": "10"
+            }
+        },
     ]
 }
