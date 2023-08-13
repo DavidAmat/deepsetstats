@@ -1,5 +1,6 @@
 # from os.path import join
 # from pathlib import Path
+
 import numpy as np
 
 # -------------------------
@@ -22,6 +23,7 @@ LIST_COURTS = ["CLAY", "GREENSET_US", "GRASS", "GRASS", "GREENSET_AO"]
 # -------------------------
 #      RGB Lines
 # -------------------------
+RGB_LINE_WHITE = np.array([255, 255, 255])
 RGB_LINE_CLAYc = np.array((234, 177, 153))
 RGB_LINE_CLAYd = np.array((189, 130, 107))
 RGB_LINE_GREENSET_USc = np.array((231, 233, 238))
@@ -32,9 +34,17 @@ RGB_LINE_GREENSET_AOc = np.array((200, 228, 240))
 RGB_LINE_GREENSET_AOd = np.array((125, 180, 224))
 
 # -------------------------
-#      Top COLORS
+#      LAB COLORS
 # -------------------------
+# Thresholds LAB color difference with the main color
+LAB_TH = {"CLAY": 5, "GREENSET_US": 15, "GRASS": 10, "GREENSET_AO": 5}
 
+
+# -------------------------
+#  EXTRA LAB COURT COLORS
+# -------------------------
+# Wimbledon: grass sand
+LAB_EXTRA_COLORS = {"GRASS": np.array([170, 140, 140])}
 
 # -------------------------
 #      Line Toleratences
@@ -61,13 +71,21 @@ GRAD_LINE_MAX_WIDTH = 10
 TOL_RGB_MIN_DIFF = 25
 TOL_RGB_MAX_DIFF = 45
 D_GRAD_LINES = {
-    "CLAY": {"COURT": RGB_CLAY, "LINE_CLEAN": RGB_LINE_CLAYc, "LINE_DIRTY": RGB_LINE_CLAYd},
+    "CLAY": {
+        "COURT": RGB_CLAY,
+        "LINE_CLEAN": RGB_LINE_CLAYc,
+        "LINE_DIRTY": RGB_LINE_CLAYd,
+    },
     "GREENSET_US": {
         "COURT": RGB_US,
         "LINE_CLEAN": RGB_LINE_GREENSET_USc,
         "LINE_DIRTY": RGB_LINE_GREENSET_USd,
     },
-    "GRASS": {"COURT": RGB_WBd, "LINE_CLEAN": RGB_LINE_GRASSc, "LINE_DIRTY": RGB_LINE_GRASSd},
+    "GRASS": {
+        "COURT": RGB_WBd,
+        "LINE_CLEAN": RGB_LINE_GRASSc,
+        "LINE_DIRTY": RGB_LINE_GRASSd,
+    },
     "GREENSET_AO": {
         "COURT": RGB_AO,
         "LINE_CLEAN": RGB_LINE_GREENSET_AOc,

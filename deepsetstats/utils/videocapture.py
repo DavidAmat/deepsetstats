@@ -95,6 +95,12 @@ class VideoClass:
         plt.show()
 
     @staticmethod
+    def show_frame_lab(frame_lab):
+        frame_rgb = cv2.cvtColor(frame_lab, cv2.COLOR_LAB2RGB)
+        plt.imshow(frame_rgb)
+        plt.show()
+
+    @staticmethod
     def show_gray(frame_gray):
         plt.imshow(frame_gray, cmap="Greys")
         plt.show()
