@@ -2,6 +2,7 @@ import os
 import pickle
 import re
 
+import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 
@@ -36,6 +37,7 @@ def create_link_flag_image(country_code):
 
 players_ranks = [
     "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2023-07-31.html",
+    "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2021-08-09.html",
     "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2015-10-05.html",
     "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2009-05-11.html",
     "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2003-09-29.html",
@@ -144,3 +146,109 @@ with open(PATH_FLAGS_COUNTRIES, "wb") as file:
     pickle.dump(results_flag, file)
 
 print("Dumped flags into pickle:", PATH_FLAGS_COUNTRIES)
+
+# -------------------------------------------- #
+# -------------------------------------------- #
+#   Final setting of the player dataset
+# -------------------------------------------- #
+# -------------------------------------------- #
+PATH_PLAYERS_RANK = (
+    "deepsetstats/dataset/players/parquet/players.parquet"  # TODO: remove
+)
+df = pd.read_parquet(PATH_PLAYERS_RANK, engine="pyarrow")
+unique_players = df[["name", "country"]].drop_duplicates()
+
+# Include best ranking
+max_rankings = df.groupby("name")["ranking"].min().reset_index()
+max_rankings.rename(columns={"ranking": "best_ranking"}, inplace=True)
+
+# Get unique players with the best ranking
+unique_players = pd.merge(unique_players, max_rankings, on="name", how="left")
+unique_players["best_ranking"] = (
+    unique_players["best_ranking"].fillna(99999).astype(int)
+)
+
+# Count players by country. If a player has multiple occurrences, we will put the name of the country at the end
+all_players_count_countries = (
+    unique_players.groupby("name")["country"].count().reset_index()
+)
+mask_repeated_players = all_players_count_countries["country"] > 1
+repeated_players = all_players_count_countries[mask_repeated_players].copy()
+unique_players_rep = pd.merge(
+    unique_players,
+    repeated_players.rename(columns={"country": "repeated_name"}),
+    on="name",
+    how="left",
+)
+dfp = pd.merge(df, unique_players_rep, on=["name", "country"], how="left")
+dfp["final_name"] = np.where(
+    dfp["repeated_name"] > 1, dfp["name"] + " " + dfp["country"], dfp["name"]
+)
+# Get name and surname
+dfp[["first_name", "common_name"]] = dfp["name"].str.split(n=1, expand=True)
+dfp[["first_name_2", "common_name_2"]] = dfp["name"].str.rsplit(n=1, expand=True)
+# Get away of the duplicates of multiple rankings
+cols = [
+    "name",
+    "country",
+    "best_ranking",
+    "final_name",
+    "first_name",
+    "common_name",
+    "common_name_2",
+]
+dfpf = dfp[cols].drop_duplicates()
+dfpf.drop("name", axis=1, inplace=True)
+dfpf.rename(columns={"final_name": "name"}, inplace=True)
+dfpf["player_id"] = dfpf.index
+
+d_id_name = {}  # player-id 2 name
+d_name_id = {}
+d_common_name_to_id = {}
+d_id_country = {}  # unique name 2 common name
+
+for _, row in dfpf.iterrows():
+    player_id = row["player_id"]
+    player_name = row["name"]
+    country = row["country"]
+    common_name = row["common_name"]
+    common_name2 = row["common_name_2"]
+
+    d_id_name[player_id] = player_name
+    if common_name not in d_common_name_to_id:
+        d_common_name_to_id[common_name] = player_id
+    if common_name2 not in d_common_name_to_id:
+        d_common_name_to_id[common_name2] = player_id
+    d_name_id[player_name] = player_id
+
+
+PATH_BIBLE_PLAYERS = "deepsetstats/dataset/players/parquet/bible_players.parquet"
+PATH_MAP_ID2NAME = "deepsetstats/dataset/players/pickle/map_id2name.parquet"
+PATH_MAP_NAME2ID = "deepsetstats/dataset/players/parquet/map_name2id.parquet"
+PATH_MAP_CNAME2ID = "deepsetstats/dataset/players/parquet/map_cname2id.parquet"
+PATH_MAPID2COUNTRY = "deepsetstats/dataset/players/parquet/map_id2country.parquet"
+
+
+def write_pickle(path, di):
+    with open(path, "wb") as file:
+        # Load the dictionary from the pickle file
+        pickle.dump(di, file)
+
+
+def load_pickle(path):
+    with open(path, "rb") as file:
+        # Load the dictionary from the pickle file
+        data = pickle.load(file)
+    return data
+
+
+write_pickle(PATH_MAP_ID2NAME, d_id_name)
+write_pickle(PATH_MAP_NAME2ID, d_name_id)
+write_pickle(PATH_MAP_CNAME2ID, d_common_name_to_id)
+write_pickle(PATH_MAPID2COUNTRY, d_id_country)
+dfpf.to_parquet(PATH_BIBLE_PLAYERS, engine="pyarrow")
+
+# d1 = load_pickle(PATH_MAP_ID2NAME)
+# d2 = load_pickle(PATH_MAP_NAME2ID)
+# d3 = load_pickle(PATH_MAP_CNAME2ID)
+# d4 = load_pickle(PATH_MAPID2COUNTRY)

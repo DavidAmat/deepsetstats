@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 # from deepsetstats.dataset.utils import master_prettify
 
 # Replace 'YOUR_API_KEY' with your actual YouTube API key
-API_KEY = "AIzaSyBNei4riOUMevYWoxQI244id_I1wq0lNhU"
+API_KEY = os.environ["API_KEY"]
 # Replace 'VIDEO_ID' with the ID of the video you want to download
 VIDEO_ID = "6eXG31O9mHU"
 
