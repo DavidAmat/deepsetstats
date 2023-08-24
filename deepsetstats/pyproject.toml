@@ -20,6 +20,7 @@ pyarrow = "^12.0.1"
 selenium = "^4.11.2"
 yt-dlp = "^2023.7.6"
 jupyterlab = ">4.0.0"
+opencv-python = "^4.8.0.76"
 
 
 [tool.poetry.dev-dependencies]
