@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <task>
+      <id>284725</id>
+      <name>Reference Courts</name>
+      <size>65</size>
+      <mode>annotation</mode>
+      <overlap>0</overlap>
+      <bugtracker></bugtracker>
+      <created>2023-09-02 17:15:31.541753+00:00</created>
+      <updated>2023-09-02 18:24:17.763675+00:00</updated>
+      <subset>default</subset>
+      <start_frame>0</start_frame>
+      <stop_frame>64</stop_frame>
+      <frame_filter></frame_filter>
+      <segments>
+        <segment>
+          <id>292084</id>
+          <start>0</start>
+          <stop>64</stop>
+          <url>https://app.cvat.ai/api/jobs/291896</url>
+        </segment>
+      </segments>
+      <owner>
+        <username>david68</username>
+        <email>daolondrizdaolondriz@gmail.com</email>
+      </owner>
+      <assignee></assignee>
+      <labels>
+        <label>
+          <name>court</name>
+          <color>#c509d5</color>
+          <type>points</type>
+          <attributes>
+          </attributes>
+        </label>
+        <label>
+          <name>net</name>
+          <color>#00e0a0</color>
+          <type>rectangle</type>
+          <attributes>
+          </attributes>
+        </label>
+      </labels>
+    </task>
+    <dumped>2023-09-02 18:30:28.459142+00:00</dumped>
+  </meta>
+  <image id="0" name="ref___l1000___t10___vl6Dx9KzyRig___f2052.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="295.79,856.88;465.85,852.47;961.68,853.57;1456.41,853.57;1627.57,855.78;529.90,674.68;963.89,673.57;1395.67,674.68;628.18,387.56;964.99,389.77;1304.01,388.66;551.99,301.42;655.79,300.32;967.20,303.63;1278.61,301.42;1383.52,300.32" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="354.32" ytl="415.17" xbr="1574.56" ybr="518.97" z_order="0">
+    </box>
+  </image>
+  <image id="1" name="ref___l1000___t11___vLhDFuGXXvGA___f5748.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="299.10,785.10;465.90,786.20;958.40,784.00;1449.80,784.00;1616.50,784.00;558.60,584.10;958.40,583.00;1358.10,581.90;681.20,316.90;959.50,315.80;1235.50,315.80;630.40,247.30;712.10,246.20;959.50,245.10;1207.90,244.00;1288.60,245.10" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="433.83" ytl="336.76" xbr="1480.70" ybr="427.30" z_order="0">
+    </box>
+  </image>
+  <image id="2" name="ref___l1000___t12___vrGT0FsEuc3U___f5199.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="356.50,833.70;527.70,837.00;1013.60,834.80;1511.60,841.40;1685.00,845.80;581.80,669.10;1014.70,673.60;1450.90,678.00;669.10,407.50;1008.10,409.70;1354.80,409.70;586.20,325.70;692.20,325.70;1008.10,327.90;1328.30,329.00;1433.30,326.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="391.87" ytl="420.69" xbr="1636.40" ybr="535.50" z_order="0">
+    </box>
+  </image>
+  <image id="3" name="ref___l1000___t4___vfnK4I6k9eHs___f29533.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="351.00,844.70;506.70,841.40;958.40,842.50;1408.90,844.70;1562.40,846.90;579.60,661.40;960.60,659.20;1339.40,660.30;680.10,389.80;962.80,393.10;1242.20,390.90;624.90,312.40;707.70,314.70;963.90,316.90;1216.80,315.70;1301.90,315.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="434.90" ytl="420.69" xbr="1474.10" ybr="505.70" z_order="0">
+    </box>
+  </image>
+  <image id="4" name="ref___l1000___t5___vRdjN79TWRFQ___f8926.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="387.40,864.60;532.10,864.60;956.20,862.40;1379.10,864.60;1526.00,866.80;597.30,665.80;955.10,663.60;1314.00,664.70;687.80,375.40;954.00,373.20;1220.10,373.20;631.50,290.30;711.00,290.40;956.20,289.30;1195.80,290.30;1276.50,287.10" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="461.40" ytl="415.20" xbr="1444.30" ybr="501.30" z_order="0">
+    </box>
+  </image>
+  <image id="5" name="ref___l1000___t6___vDEgn9XJldGA___f17024.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="334.40,827.10;497.90,823.70;960.60,821.50;1431.00,827.10;1590.10,830.40;574.10,637.10;962.80,637.10;1351.50,641.50;681.20,382.00;962.80,382.00;1245.50,384.20;622.70,310.20;708.80,311.40;963.90,311.40;1219.00,311.30;1304.10,311.40" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="431.58" ytl="403.10" xbr="1492.90" ybr="491.40" z_order="0">
+    </box>
+  </image>
+  <image id="6" name="ref___l1000___t7___vnqCZWf80dc0___f14822.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="240.50,827.10;425.00,824.80;957.30,824.80;1486.20,829.30;1669.60,832.60;539.90,583.00;959.50,588.50;1370.30,589.60;680.10,292.60;959.50,293.70;1241.10,294.80;629.30,216.30;714.30,218.60;959.50,218.60;1208.00,218.50;1290.80,219.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="412.81" ytl="318.07" xbr="1500.61" ybr="418.50" z_order="0">
+    </box>
+  </image>
+  <image id="7" name="ref___l1000___t8___vRlUN-rG0w9w___f16017.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="265.90,835.90;444.90,833.60;963.90,830.30;1484.00,833.70;1661.90,834.80;554.30,604.00;963.90,605.10;1373.60,605.10;686.70,326.80;960.60,327.90;1237.80,326.80;638.10,257.20;716.50,258.40;960.60,256.10;1204.70,256.00;1285.30,256.10" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="430.48" ytl="350.09" xbr="1496.20" ybr="442.80" z_order="0">
+    </box>
+  </image>
+  <image id="8" name="ref___l1000___t9___vYLZUFP2bkoE___f10328.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="299.00,850.30;469.20,844.60;959.50,840.20;1449.80,844.70;1622.10,844.70;549.90,651.50;958.40,651.50;1368.10,644.90;663.50,377.60;960.60,377.60;1256.60,373.20;605.00,301.40;691.10,300.40;958.40,301.40;1226.80,298.00;1316.20,295.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="403.98" ytl="397.60" xbr="1517.20" ybr="494.70" z_order="0">
+    </box>
+  </image>
+  <image id="9" name="ref___l250___t26___v59dAgrtP4qc___f7620.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="265.00,785.80;462.00,782.80;1031.10,782.90;1600.20,788.30;1801.20,791.90;591.10,579.90;1028.30,582.50;1465.70,583.10;736.40,338.90;1028.00,340.10;1316.60,341.90;686.70,277.10;770.20,277.80;1026.90,280.40;1282.00,279.20;1364.60,281.60" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="460.39" ytl="338.50" xbr="1592.40" ybr="441.00" z_order="0">
+    </box>
+  </image>
+  <image id="10" name="ref___l250___t27___v6GYTu97U9_E___f7545.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="320.50,891.50;477.20,893.00;964.80,894.80;1449.80,892.20;1611.40,888.60;589.30,648.00;966.50,648.80;1343.00,646.70;722.10,359.50;966.20,358.90;1215.40,358.90;684.00,290.50;754.10,289.40;970.50,289.40;1184.40,289.90;1256.20,287.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="488.16" ytl="394.02" xbr="1442.80" ybr="478.60" z_order="0">
+    </box>
+  </image>
+  <image id="11" name="ref___l250___t28___vJkJ4P_Ks6Y8___f3731.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="202.30,828.80;391.20,830.30;952.30,829.40;1515.20,829.50;1709.00,831.30;505.10,599.60;952.20,600.40;1401.20,601.00;648.70,313.80;951.90,311.40;1256.60,313.20;593.60,238.60;683.40,238.40;953.50,239.30;1223.80,239.70;1309.90,237.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="375.32" ytl="328.65" xbr="1530.60" ybr="432.90" z_order="0">
+    </box>
+  </image>
+  <image id="12" name="ref___l250___t29___v59dAgrtP4qc___f5948.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="200.50,822.50;399.30,814.20;955.90,811.50;1507.10,807.10;1698.30,808.90;524.80,613.90;955.80,614.70;1377.90,612.60;671.10,379.20;952.80,377.70;1232.40,380.40;621.40,321.00;704.00,320.80;953.50,322.60;1198.70,323.90;1278.60,321.10" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="398.60" ytl="377.90" xbr="1494.80" ybr="471.40" z_order="0">
+    </box>
+  </image>
+  <image id="13" name="ref___l250___t30___vZKwdO8fZ2Vs___f11301.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="149.50,848.50;361.70,844.60;957.70,840.20;1558.10,845.60;1773.50,851.00;476.40,629.10;963.00,629.00;1451.30,629.60;628.10,343.40;969.80,343.70;1314.80,341.90;560.50,265.50;666.40,264.40;971.40,265.30;1279.30,264.80;1384.30,263.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="318.90" ytl="351.04" xbr="1618.40" ybr="466.00" z_order="0">
+    </box>
+  </image>
+  <image id="14" name="ref___l250___t31___vXVSplYkD0JA___f5696.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="226.50,884.30;414.50,881.30;952.30,880.50;1491.80,881.40;1677.70,884.10;531.00,683.70;957.60,684.50;1377.00,681.50;673.80,448.20;956.40,447.60;1237.80,447.60;622.30,386.40;706.70,387.10;957.10,390.70;1204.10,389.30;1287.60,388.30" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="406.66" ytl="446.90" xbr="1500.20" ybr="545.70" z_order="0">
+    </box>
+  </image>
+  <image id="15" name="ref___l250___t32___vLJq7UzetxMo___f10543.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="360.80,810.90;514.80,810.60;960.40,809.80;1407.60,809.80;1562.20,810.70;608.90,589.70;958.50,591.40;1308.90,589.30;724.00,322.80;960.00,323.10;1190.30,323.10;684.10,259.20;754.20,259.90;959.80,259.10;1162.90,256.80;1232.10,256.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="509.65" ytl="356.45" xbr="1409.80" ybr="434.70" z_order="0">
+    </box>
+  </image>
+  <image id="16" name="ref___l250___t33___vR0ywtYWcBwc___f14597.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="152.10,823.40;361.70,820.40;961.30,815.20;1563.40,817.90;1774.40,819.70;479.00,592.40;960.30,589.60;1445.00,587.50;631.80,295.90;963.60,295.30;1297.80,292.70;568.60,218.00;664.70,217.80;963.40,219.70;1263.20,215.60;1360.20,215.50" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="327.86" ytl="308.99" xbr="1604.10" ybr="416.80" z_order="0">
+    </box>
+  </image>
+  <image id="17" name="ref___l250___t34___v2ckgPuRwnL8___f10091.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="253.30,873.50;430.70,870.50;955.90,871.60;1479.20,876.10;1667.80,881.50;531.80,639.90;956.70,640.60;1383.20,640.30;666.70,336.20;960.00,336.50;1258.40,335.70;608.90,250.20;698.70,252.70;961.60,256.40;1226.50,256.80;1316.30,255.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="394.13" ytl="362.72" xbr="1525.30" ybr="463.40" z_order="0">
+    </box>
+  </image>
+  <image id="18" name="ref___l250___t35___vSmFGhhcDCX8___f11539.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="301.70,776.80;470.10,777.40;960.40,779.40;1449.60,778.50;1618.50,783.90;575.70,562.00;962.10,565.40;1345.60,565.10;705.20,297.70;963.60,298.90;1221.70,298.10;661.70,232.30;736.30,233.90;963.40,234.90;1191.60,232.60;1267.90,230.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="470.25" ytl="321.53" xbr="1457.20" ybr="411.50" z_order="0">
+    </box>
+  </image>
+  <image id="19" name="ref___l250___t36___vxuY-w4CuWPU___f12561.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="272.10,810.80;452.20,808.70;962.20,805.40;1472.90,807.20;1649.90,811.70;551.50,617.50;963.00,619.10;1377.80,617.90;674.80,366.70;962.70,367.00;1253.90,365.30;617.80,299.50;704.10,299.30;963.40,300.30;1223.80,297.10;1310.00,297.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="406.66" ytl="379.73" xbr="1511.80" ybr="473.30" z_order="0">
+    </box>
+  </image>
+  <image id="20" name="ref___l250___t37___vu9U8TzWuQHA___f2706.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="385.80,886.90;533.70,886.60;960.40,890.50;1390.50,887.80;1538.00,887.80;599.90,679.30;956.70,677.30;1308.80,680.60;695.40,392.70;950.20,393.90;1204.60,394.90;646.50,315.60;722.00,317.20;947.30,316.40;1172.80,315.90;1251.80,315.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="480.10" ytl="432.57" xbr="1427.60" ybr="514.50" z_order="0">
+    </box>
+  </image>
+  <image id="21" name="ref___l250___t38___vYrD-njfufq8___f9470.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="226.40,799.10;415.50,796.20;959.50,792.00;1500.60,788.40;1694.70,788.40;529.20,582.60;961.20,581.50;1392.10,576.70;666.70,313.00;960.90,315.10;1254.70,310.70;611.60,248.40;700.50,244.70;960.70,243.90;1219.40,241.60;1307.30,242.40" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="394.12" ytl="325.10" xbr="1524.30" ybr="424.10" z_order="0">
+    </box>
+  </image>
+  <image id="22" name="ref___l250___t39___vcoCvaXhDaQk___f6630.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="284.60,843.90;447.70,846.40;955.90,850.20;1466.60,846.60;1628.40,843.90;587.40,547.70;959.40,544.80;1332.10,548.90;737.40,245.80;958.20,242.60;1185.70,246.20;703.80,181.20;768.60,181.10;961.60,179.40;1153.10,178.90;1219.50,179.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="507.86" ytl="284.80" xbr="1408.80" ybr="361.40" z_order="0">
+    </box>
+  </image>
+  <image id="23" name="ref___l250___t40___vP2TjTTCk4mw___f8394.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="441.30,839.40;575.80,836.50;965.80,836.80;1358.20,838.50;1495.90,841.20;639.30,632.80;970.10,629.90;1305.20,633.10;728.40,331.80;977.00,334.80;1223.30,329.50;678.70,246.60;750.70,246.50;981.30,245.70;1204.10,246.10;1278.60,244.20" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="519.50" ytl="383.31" xbr="1435.69" ybr="460.82" z_order="0">
+    </box>
+  </image>
+  <image id="24" name="ref___l250___t41___v1oV0U1yZTsI___f4748.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="361.60,709.60;500.60,712.00;931.80,708.70;1362.70,703.30;1501.30,703.30;597.20,520.90;970.10,629.90;1264.00,514.00;715.90,297.80;932.20,295.40;1145.40,294.60;684.10,245.70;745.30,244.70;931.10,243.00;1118.10,240.70;1179.20,241.50" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="515.92" ytl="312.60" xbr="1352.40" ybr="385.60" z_order="0">
+    </box>
+  </image>
+  <image id="25" name="ref___l250___t42___vgkYMV1hPDoA___f9541.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="189.70,833.20;394.00,831.10;966.70,826.00;1536.40,825.10;1738.60,829.60;556.90,569.30;961.10,568.10;1365.20,566.80;716.80,313.00;957.30,312.40;1197.30,312.50;682.30,255.50;751.60,257.20;955.30,256.40;1159.30,255.00;1233.80,256.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="468.45" ytl="323.35" xbr="1452.70" ybr="409.80" z_order="0">
+    </box>
+  </image>
+  <image id="26" name="ref___l250___t43___vMjdye_hOmR0___f1861.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="418.10,688.10;553.40,688.70;961.30,687.20;1367.10,686.30;1503.10,686.30;662.60,469.90;960.20,466.90;1254.20,469.20;779.50,239.60;958.20,238.10;1140.00,240.00;746.80,189.20;801.70,188.20;957.10,187.40;1116.30,186.90;1167.50,186.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="590.24" ytl="261.56" xbr="1323.70" ybr="330.10" z_order="0">
+    </box>
+  </image>
+  <image id="27" name="ref___l250___t44___vU5-UieTw6a8___f5734.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="280.20,807.20;458.50,803.30;962.20,804.50;1468.30,803.60;1640.10,804.50;570.40,623.90;962.90,624.50;1357.20,626.80;702.50,411.50;961.80,415.40;1224.20,415.50;659.90,359.30;736.30,360.10;961.60,358.40;1189.70,359.70;1266.90,360.60" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="461.29" ytl="411.11" xbr="1472.40" ybr="508.30" z_order="0">
+    </box>
+  </image>
+  <image id="28" name="ref___l250___t45___vQIvaTT15-Ik___f6203.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="416.30,792.00;561.50,787.20;981.90,787.50;1402.90,788.40;1554.10,792.00;667.10,568.40;981.70,567.20;1293.60,565.00;780.40,325.50;977.00,326.70;1176.70,325.10;746.80,269.70;806.10,268.80;975.90,270.60;1148.50,269.30;1206.90,269.30" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="588.45" ytl="355.59" xbr="1374.80" ybr="423.20" z_order="0">
+    </box>
+  </image>
+  <image id="29" name="ref___l250___t46___vsFf3s0NQAPQ___f3003.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="230.00,834.10;416.40,830.20;944.30,831.40;1477.20,838.50;1661.60,843.00;520.20,651.70;956.60,655.00;1392.10,659.90;659.50,407.00;970.70,410.90;1282.40,411.10;602.60,340.40;696.00,340.40;975.00,344.00;1256.00,344.50;1349.30,342.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="378.01" ytl="408.42" xbr="1552.10" ybr="522.60" z_order="0">
+    </box>
+  </image>
+  <image id="30" name="ref___l250___t47___vgvyih6mefYg___f4693.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="181.60,917.40;378.80,918.90;957.70,917.40;1529.10,922.70;1735.00,925.40;493.30,685.70;962.90,690.80;1427.90,694.80;642.50,384.60;968.00,384.00;1294.00,385.10;579.30,300.10;675.40,301.90;970.50,306.40;1262.30,302.40;1359.10,302.40" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="352.93" ytl="408.42" xbr="1582.50" ybr="522.60" z_order="0">
+    </box>
+  </image>
+  <image id="31" name="ref___l250___t48___vcOWCFMpAk80___f1494.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="245.20,828.70;432.50,823.10;964.90,822.50;1496.00,824.20;1679.50,827.80;522.90,636.40;959.30,635.30;1393.00,636.60;646.10,382.80;954.60,384.00;1256.40,383.30;586.50,313.50;677.20,314.40;951.70,315.40;1223.80,315.80;1310.70,314.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="378.90" ytl="389.62" xbr="1527.90" ybr="491.30" z_order="0">
+    </box>
+  </image>
+  <image id="32" name="ref___l250___t49___vOwTDgMnp6xo___f8497.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="401.00,902.10;542.70,903.70;963.10,901.30;1381.40,902.10;1523.70,904.80;605.30,722.40;963.80,718.60;1321.40,717.20;691.80,440.10;961.80,443.10;1235.80,438.80;628.60,355.60;712.10,358.30;962.40,358.40;1210.40,357.90;1295.50,357.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="461.29" ytl="478.28" xbr="1458.90" ybr="563.80" z_order="0">
+    </box>
+  </image>
+  <image id="33" name="ref___l250___t50___vk4TVISHH_H0___f11102.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="202.20,875.20;400.30,876.80;978.30,879.80;1555.10,883.30;1758.30,887.80;543.50,643.60;977.20,646.10;1410.10,648.20;697.20,380.10;973.40,384.90;1251.90,389.50;652.80,319.80;732.70,323.40;972.20,324.40;1214.00,325.70;1294.60,325.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="437.99" ytl="395.89" xbr="1518.89" ybr="494.81" z_order="0">
+    </box>
+  </image>
+  <image id="34" name="ref___l250___t51___vGIJ4inwq88c___f7228.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="331.20,743.60;489.00,743.40;961.30,743.70;1431.50,741.80;1597.10,747.20;586.50,545.10;968.20,543.10;1347.40,546.10;711.50,283.40;974.30,285.50;1234.90,282.00;664.40,216.80;741.70,216.80;974.90,216.90;1209.50,216.40;1286.50,212.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="471.12" ytl="303.65" xbr="1476.80" ybr="394.50" z_order="0">
+    </box>
+  </image>
+  <image id="35" name="ref___l250___t52___vrkPAdfLV0Ow___f12600.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="378.70,861.80;527.50,860.70;961.30,857.40;1396.60,855.50;1544.30,854.70;622.30,678.50;961.90,677.40;1299.00,675.90;734.80,461.60;960.00,459.20;1185.60,459.30;698.40,406.60;763.20,408.40;959.70,407.60;1155.80,407.10;1222.00,405.40" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="523.96" ytl="474.69" xbr="1396.20" ybr="551.20" z_order="0">
+    </box>
+  </image>
+  <image id="36" name="ref___l250___t53___vE_ugcjV3Zlk___f1506.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="303.50,912.80;465.70,908.20;947.00,908.40;1436.90,907.40;1603.40,912.00;580.20,633.70;954.70,633.50;1332.10,637.40;712.40,309.40;962.70,309.60;1211.60,310.60;672.40,230.20;744.40,230.20;962.40,230.30;1183.60,230.70;1256.90,230.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="475.60" ytl="361.86" xbr="1437.40" ybr="443.70" z_order="0">
+    </box>
+  </image>
+  <image id="37" name="ref___l250___t54___v-wRkv5TUyMA___f11343.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="395.70,772.20;538.20,773.00;952.40,780.30;1365.30,781.10;1505.80,785.70;606.20,594.30;955.60,601.30;1303.40,602.50;708.80,338.10;960.00,342.70;1216.10,344.60;658.10,263.30;735.40,266.00;963.30,269.70;1190.80,271.90;1269.40,272.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="489.93" ytl="366.33" xbr="1429.30" ybr="455.30" z_order="0">
+    </box>
+  </image>
+  <image id="38" name="ref___l250___t55___v_7xeq_ycIMY___f1970.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="370.60,817.00;527.50,816.90;996.30,813.40;1458.40,816.90;1618.60,821.50;634.00,590.70;995.90,591.50;1352.70,591.80;754.50,321.10;993.10,320.30;1230.40,323.10;712.70,256.10;780.20,256.20;990.20,257.20;1202.40,257.60;1272.10,257.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="524.85" ytl="348.42" xbr="1464.23" ybr="437.39" z_order="0">
+    </box>
+  </image>
+  <image id="39" name="ref___l250___t56___v-YXx9Dh1DKE___f19410.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="307.00,703.30;474.70,699.60;961.40,694.30;1441.40,691.50;1608.80,690.80;565.90,532.50;957.40,529.70;1342.90,530.00;677.50,320.20;950.10,320.30;1217.00,315.90;629.40,261.50;711.20,263.40;949.90,265.30;1187.20,263.00;1264.90,262.20" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="437.09" ytl="322.50" xbr="1458.90" ybr="410.52" z_order="0">
+    </box>
+  </image>
+  <image id="40" name="ref___l250___t57___vff95P5BsrSM___f1262.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="340.30,828.00;497.30,826.40;951.70,827.60;1410.20,826.90;1565.80,829.40;574.50,616.30;956.40,620.00;1335.40,614.90;677.50,320.20;957.60,320.30;1232.00,318.00;620.80,238.90;706.90,239.80;956.30,240.60;1208.70,237.20;1293.90,235.30" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="440.32" ytl="352.59" xbr="1476.10" ybr="450.30" z_order="0">
+    </box>
+  </image>
+  <image id="41" name="ref___l250___t58___vA3UJ7GoYSwU___f2776.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="334.90,828.00;497.30,826.40;965.70,822.20;1424.20,818.30;1583.00,817.60;586.30,604.50;965.00,605.00;1339.70,605.20;699.00,309.50;960.80,310.60;1222.30,312.60;644.40,232.50;726.20,235.50;958.40,233.10;1195.80,235.10;1272.40,233.20" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="459.66" ytl="346.14" xbr="1456.80" ybr="435.30" z_order="0">
+    </box>
+  </image>
+  <image id="42" name="ref___l250___t59___vEz8TgcPa39g___f7011.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="152.20,829.10;366.20,827.50;956.00,825.40;1544.60,825.80;1753.90,829.40;482.10,613.10;960.70,612.50;1437.50,614.90;630.20,328.80;962.90,332.10;1293.20,333.00;560.60,255.10;667.10,257.00;964.80,261.00;1261.40,258.70;1362.70,254.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="327.48" ytl="338.62" xbr="1606.20" ybr="452.50" z_order="0">
+    </box>
+  </image>
+  <image id="43" name="ref___l250___t60___vDhnpBjrgb34___f6007.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="374.60,757.10;524.20,756.60;965.70,757.70;1408.10,754.90;1563.70,757.40;623.90,537.90;966.00,539.40;1313.90,535.40;743.00,272.90;968.30,271.90;1197.60,272.80;702.40,207.80;771.40,205.40;970.20,207.30;1171.10,205.00;1239.10,205.30" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="525.21" ytl="302.08" xbr="1410.60" ybr="382.60" z_order="0">
+    </box>
+  </image>
+  <image id="44" name="ref___l250___t61___vQQABh2Iwa48___f9605.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="267.10,738.80;444.70,740.50;965.70,742.70;1490.80,737.70;1664.70,737.00;593.80,534.70;964.90,535.10;1334.30,532.20;740.90,333.10;965.10,332.10;1186.90,333.00;713.10,289.50;774.60,287.10;963.80,290.00;1153.90,288.80;1216.60,290.10" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="516.62" ytl="331.10" xbr="1402.00" ybr="411.62" z_order="0">
+    </box>
+  </image>
+  <image id="45" name="ref___l250___t62___vG4MtIKG_3RM___f4969.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="339.10,809.70;500.60,808.20;962.50,808.30;1422.00,806.50;1585.20,807.90;571.20,641.10;958.50,643.60;1341.80,645.00;673.20,410.50;955.40,411.60;1232.00,410.40;617.50,344.30;701.50,348.40;953.10,349.10;1203.30,346.80;1289.70,346.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="423.12" ytl="420.29" xbr="1483.70" ybr="520.20" z_order="0">
+    </box>
+  </image>
+  <image id="46" name="ref___l250___t63___vto31cLb1IPM___f5397.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="269.30,800.00;450.10,797.50;959.30,795.40;1466.10,799.00;1643.20,800.40;565.80,594.90;962.80,595.20;1354.70,597.70;702.20,352.50;961.80,356.80;1223.40,357.70;658.30,295.90;734.80,297.90;961.70,296.40;1189.30,298.40;1266.10,297.60" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="457.51" ytl="365.50" xbr="1467.60" ybr="453.60" z_order="0">
+    </box>
+  </image>
+  <image id="47" name="ref___l500___t13___vKdHqCKOrm7M___f8911.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="311.20,876.30;479.10,872.70;959.30,871.70;1440.30,871.00;1604.50,873.50;543.20,693.80;961.70,690.80;1376.20,691.20;640.90,414.80;958.60,415.90;1276.10,414.70;570.20,333.50;668.20,333.40;957.40,332.90;1247.30,329.60;1342.40,330.90" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="376.91" ytl="437.50" xbr="1538.50" ybr="537.40" z_order="0">
+    </box>
+  </image>
+  <image id="48" name="ref___l500___t14___vTUYkRlMdw0M___f4952.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="251.00,841.90;434.00,840.50;960.40,843.80;1489.70,844.10;1680.80,847.70;523.90,619.60;966.00,626.30;1407.40,624.60;652.70,319.20;971.50,321.30;1287.90,319.10;587.40,231.40;684.30,232.40;971.40,234.00;1257.00,237.20;1356.40,234.20" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="375.84" ytl="342.93" xbr="1561.10" ybr="442.83" z_order="0">
+    </box>
+  </image>
+  <image id="49" name="ref___l500___t15___vWtJU8HN_iJ4___f5269.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="407.90,729.10;546.80,727.70;958.20,726.70;1372.60,729.10;1516.40,728.40;630.30,537.90;962.80,537.10;1292.40,538.60;736.50,292.30;962.90,292.30;1190.10,287.90;693.80,226.00;761.70,229.20;968.20,230.80;1167.80,223.20;1237.10,225.60" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="525.21" ytl="319.29" xbr="1401.00" ybr="394.50" z_order="0">
+    </box>
+  </image>
+  <image id="50" name="ref___l500___t16___vsaVWEjCaZxM___f9751.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="299.40,801.10;469.40,798.60;953.90,799.80;1441.40,801.10;1612.00,806.80;561.50,597.00;954.20,598.40;1350.40,600.90;680.60,328.80;954.30,329.90;1232.00,332.00;625.00,258.20;708.00,258.20;957.50,259.80;1203.30,257.60;1283.30,260.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="428.50" ytl="349.38" xbr="1477.30" ybr="453.60" z_order="0">
+    </box>
+  </image>
+  <image id="51" name="ref___l500___t17___vpVjbpQmE6ak___f31206.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="366.00,884.90;518.80,882.40;963.60,877.20;1410.20,876.30;1561.50,875.60;585.10,669.00;961.70,666.10;1339.70,664.30;677.40,362.10;958.60,362.10;1234.10,359.90;618.60,276.50;703.70,274.30;956.40,274.80;1209.70,273.70;1288.70,271.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="439.24" ytl="406.34" xbr="1473.00" ybr="496.60" z_order="0">
+    </box>
+  </image>
+  <image id="52" name="ref___l500___t18___vX3WBM6UREBA___f4605.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="260.70,829.00;442.50,827.60;960.40,825.60;1486.50,832.20;1675.40,834.80;534.60,631.40;960.60,628.50;1390.20,632.10;662.40,362.10;959.70,360.00;1263.10,359.90;593.90,287.20;689.70,286.10;958.50,288.80;1231.20,285.50;1323.10,286.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="390.88" ytl="375.17" xbr="1538.60" ybr="475.10" z_order="0">
+    </box>
+  </image>
+  <image id="53" name="ref___l500___t19___vKMrihJcz268___f4326.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="316.60,918.20;486.60,915.70;980.80,908.30;1467.20,910.60;1641.00,912.20;578.70,695.90;977.80,698.30;1370.90,694.40;690.30,413.70;970.40,415.90;1251.30,413.60;632.60,336.60;719.80,336.60;970.30,340.40;1219.40,339.20;1303.80,339.50" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="441.39" ytl="439.65" xbr="1501.00" ybr="539.58" z_order="0">
+    </box>
+  </image>
+  <image id="54" name="ref___l500___t20___vI2zp4FjoCKA___f1423.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="342.40,870.90;500.60,868.40;950.70,864.20;1408.10,869.80;1565.80,872.40;570.10,674.40;957.40,674.70;1344.00,675.10;671.00,387.90;959.70,388.00;1253.40,386.70;606.80,304.40;695.00,305.50;960.60,306.00;1228.00,303.70;1316.70,303.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="418.83" ytl="417.10" xbr="1495.60" ybr="518.08" z_order="0">
+    </box>
+  </image>
+  <image id="55" name="ref___l500___t21___vSActabD3zsU___f5218.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="212.40,818.20;406.00,812.50;958.20,811.50;1509.10,816.10;1705.50,820.80;527.10,578.80;957.40,582.30;1393.40,580.50;663.50,289.00;957.60,292.40;1249.10,290.00;613.20,216.30;698.20,216.30;957.40,215.70;1214.00,216.70;1306.00,217.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="387.66" ytl="307.49" xbr="1523.50" ybr="408.47" z_order="0">
+    </box>
+  </image>
+  <image id="56" name="ref___l500___t22___vS3AFUhfHz_s___f708.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="406.90,798.90;554.30,796.40;975.40,794.30;1395.20,793.50;1534.60,792.90;619.50,589.50;961.70,588.70;1307.40,590.20;702.20,309.40;945.80,311.70;1187.80,312.60;654.00,230.30;722.90,234.60;946.70,235.00;1163.50,236.00;1231.90,237.40" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="492.97" ytl="346.17" xbr="1416.00" ybr="431.00" z_order="0">
+    </box>
+  </image>
+  <image id="57" name="ref___l500___t23___vBEH-aOIgDqw___f8779.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="344.60,889.20;500.60,891.00;963.60,888.90;1425.30,885.90;1585.10,886.40;563.60,684.10;962.80,686.50;1357.90,682.60;661.40,378.20;958.70,376.20;1257.60,376.00;589.50,286.20;682.10,287.30;955.30,287.70;1230.10,284.30;1324.30,283.60" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="405.93" ytl="417.10" xbr="1507.30" ybr="512.70" z_order="0">
+    </box>
+  </image>
+  <image id="58" name="ref___l500___t24___v2fRc4mUq5aw___f5743.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="321.00,762.40;484.50,761.00;955.00,759.90;1429.60,763.40;1594.80,763.90;563.60,571.30;956.40,570.40;1346.10,571.90;677.50,306.20;959.80,307.40;1237.20,304.00;622.80,231.40;705.70,233.60;958.50,234.00;1210.80,234.90;1294.20,235.20" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="431.72" ytl="324.70" xbr="1484.70" ybr="419.21" z_order="0">
+    </box>
+  </image>
+  <image id="59" name="ref___l500___t25___vkiSk2s_2gXU___f23429.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="55.60,880.60;290.00,876.00;961.40,877.00;1631.60,879.50;1874.20,885.30;461.50,613.20;961.80,617.70;1464.30,614.90;637.70,328.80;960.90,327.80;1283.40,329.80;588.40,258.30;683.10,259.40;963.90,259.80;1238.70,259.60;1334.00,258.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="327.48" ytl="329.00" xbr="1591.10" ybr="446.10" z_order="0">
+    </box>
+  </image>
+  <image id="60" name="ref___lfinals___t64___vdsALS4dDxDs___f12418.png" width="1920" height="1080">
+    <points label="court" source="manual" occluded="0" points="320.00,860.20;483.40,857.70;961.40,856.60;1442.50,863.40;1608.80,863.80;547.50,679.80;963.90,677.90;1374.00,680.50;646.30,401.90;959.80,404.10;1274.80,405.00;576.60,319.60;672.40,319.60;959.60,322.10;1249.40,323.00;1345.80,324.40" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="386.59" ytl="425.70" xbr="1540.50" ybr="535.30" z_order="0">
+    </box>
+  </image>
+  <image id="61" name="ref___lgrandslam___t0___vF9ZGyxlCyBU___f79834.png" width="1280" height="720">
+    <points label="court" source="manual" occluded="0" points="199.30,516.80;314.20,517.80;642.60,519.90;1085.00,521.90;969.50,520.90;360.80,394.00;641.00,396.30;914.80,398.90;433.80,218.30;636.90,221.50;840.50,221.40;391.90,169.00;454.70,172.10;638.80,173.50;821.30,172.40;885.90,170.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="342.88" ytl="233.00" xbr="933.30" ybr="300.30" z_order="0">
+    </box>
+  </image>
+  <image id="62" name="ref___lgrandslam___t1___vQNgE9-0sNjQ&amp;t___f7025.png" width="1280" height="720">
+    <points label="court" source="manual" occluded="0" points="232.30,590.00;332.80,585.90;622.00,584.90;1013.80,587.90;914.80,588.00;370.10,459.00;623.50,460.30;874.60,460.80;437.90,267.80;625.60,271.00;814.70,268.90;395.00,213.40;453.70,212.30;628.40,212.70;797.60,212.60;856.00,212.00" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="350.11" ytl="294.90" xbr="902.40" ybr="355.00" z_order="0">
+    </box>
+  </image>
+  <image id="63" name="ref___lgrandslam___t2___vdvBr9Wr8BCY___f1611.png" width="1280" height="720">
+    <points label="court" source="manual" occluded="0" points="113.70,598.30;247.20,594.20;629.20,593.20;1143.80,598.20;1010.70,596.30;313.40,468.30;631.80,465.50;948.90,469.10;395.60,289.50;632.80,288.50;867.30,290.60;349.60,233.00;421.70,235.00;634.60,234.40;845.10,234.30;914.80,233.70" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="287.17" ytl="288.71" xbr="978.70" ybr="369.40" z_order="0">
+    </box>
+  </image>
+  <image id="64" name="ref___lgrandslam___t3___vXmW-ArFVZJQ___f38561.png" width="1280" height="720">
+    <points label="court" source="manual" occluded="0" points="227.20,575.60;331.80,572.50;635.40,572.60;1036.50,572.40;935.40,571.50;386.60,421.90;633.90,423.20;876.70,422.70;460.60,228.60;630.70,227.60;802.30,226.60;428.00,175.20;477.40,174.10;632.50,175.60;782.20,175.50;833.30,172.80" z_order="0">
+    </points>
+    <box label="net" source="manual" occluded="0" xtl="374.86" ytl="252.60" xbr="890.00" ybr="311.60" z_order="0">
+    </box>
+  </image>
+</annotations>

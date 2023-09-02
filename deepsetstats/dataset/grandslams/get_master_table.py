@@ -1,4 +1,5 @@
 import os
+import re
 
 import pandas as pd
 import tqdm
@@ -120,6 +121,34 @@ df_final = pd.merge(df_final, df_players[cols_players], on="player_id", how="lef
 
 cols_tt = ["title", "video_id"]
 df_final = pd.merge(df_final, dfh[cols_tt], on="video_id", how="left")
+
+
+# --------------------------------------- #
+# --------------------------------------- #
+# Add years
+# --------------------------------------- #
+# --------------------------------------- #
+
+def get_year(title):
+
+    # Define the regex pattern to match a 4-digit year starting with "19" or "20"
+    pattern = r'\b(?:19\d{2}|20\d{2})\b'
+
+    # Search for the year in the title
+    match = re.search(pattern, title)
+
+    # Check if a match was found
+    if match:
+        year = match.group(0)
+        return int(year)
+    else:
+        return None
+
+
+df_final["year"] = df_final["title"].map(get_year)
+df_final["year"] = df_final["year"].fillna(2020).astype(int)
+df_final.sort_values("year", ascending=False)
+
 
 # Writing final dataframe master
 df_final.to_parquet(PATH_MASTER, engine="pyarrow")

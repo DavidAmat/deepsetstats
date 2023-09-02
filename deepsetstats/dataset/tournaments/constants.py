@@ -54,7 +54,7 @@ TOURNAMENT_NAMING_250 = {
     "Lyon": "Lyon",
     "Geneva": "Geneva",
     "Stuttgart": "Stuttgart",
-    "'s-Hertogenbosch": """'s-Hertogenbosch""",
+    "'s-Hertogenbosch": "Hertogenbosch",
     "Mallorca": "Mallorca",
     "Eastbourne": "Eastbourne",
     "Newport, RI": "Newport",
