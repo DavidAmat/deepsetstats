@@ -1,12 +1,10 @@
 version: '3.7'
 services:
   project:
-    image: "${PROJECT_NAME}"
+    image: "dss_image"
     build:
       context: .
-      dockerfile: "${PROJECT_NAME}/Dockerfile"
-      args:
-        estimator: "${PROJECT_NAME}"
+      dockerfile: "deepsetstats/Dockerfile"
     ports:
       - "8080:8080"
     networks:
