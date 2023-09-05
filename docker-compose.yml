@@ -13,6 +13,7 @@ services:
       - shared
     volumes:
       - .:/usr/src/app
+      - /Volumes/Seagate/Datasets/deepsetstats/tennistv:/usr/src/app/videos
     env_file:
       - .env
 

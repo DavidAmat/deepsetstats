@@ -25,6 +25,8 @@ RUN apt-get update && apt-get -y install cmake git build-essential curl \
     # Add update for pip to have the latest package DB
     python -m pip install --upgrade pip
 
+RUN apt-get install -y ffmpeg
+
 # Add Poetry install
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
