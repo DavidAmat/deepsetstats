@@ -1,6 +1,10 @@
 from __future__ import print_function
 
+import os
+import random
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from os.path import join as jp
 
 import cv2
 import matplotlib.pyplot as plt
@@ -17,6 +21,123 @@ from deepsetstats.paths import PATH_VIDEOS
 
 class Utils:
 
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    #      Utils for Reference Court selection
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    @staticmethod
+    def full_parse_img_ref(string):
+        pattern = r'ref___l(.*?)___t(.*?)___v(.*?)___f(.*?).png'
+        match = re.search(pattern, string)
+
+        if match:
+            level = match.group(1)
+            tourn_id = match.group(2)
+            video_id = match.group(3)
+            frame_num = match.group(4)
+            return string, level, int(tourn_id), video_id, int(frame_num)
+        else:
+            return None, None, None, None, None
+
+    @staticmethod
+    def create_img_name(level, tournament_id, video_id, frame_num):
+        return f"ref___l{level}___t{tournament_id}___v{video_id}___f{frame_num}.png"
+
+    @staticmethod
+    def parse_img_ref(string):
+        pattern_vid = r'___v(.*?)___f'
+        pattern_tourn = r'___t(.*?)___v'
+        match = re.search(pattern_vid, string)
+        match_tourn = re.search(pattern_tourn, string)
+
+        if match and match_tourn:
+            video_id = match.group(1)
+            tourn_id = match_tourn.group(1)
+            return video_id, int(tourn_id)
+        else:
+            return None, None
+
+    @staticmethod
+    def bgr_to_rgb(img_bgr):
+        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+        return img_rgb
+
+    @staticmethod
+    def rgb_to_bgr(img_rgb):
+        img_bgr = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR)
+        return img_bgr
+
+    @staticmethod
+    def plot_img_rgb(img_rgb):
+
+        # Plot the first frame using matplotlib
+        plt.imshow(img_rgb)
+        plt.axis("off")  # Turn off axis labels and ticks
+        plt.show()
+
+    @staticmethod
+    def save_bgr_img(path, img_bgr):
+        cv2.imwrite(path, img_bgr)
+
+    @staticmethod
+    def get_random_frame(video_id, frame_num_input=None, is_grand_slam=False):
+        filename = f'{video_id}.mp4'
+        path_video_id = jp(PATH_VIDEOS, filename)
+
+        if not os.path.exists(path_video_id):
+            print(f"Warning! does not exist path: {path_video_id}")
+            return False, False, 0
+
+        # Open the video capture object
+        cap = cv2.VideoCapture(path_video_id)
+
+        # Get the total number of frames in the video
+        total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+
+        if frame_num_input is None:
+            # Select a random frame
+            random_frame_index = random.randint(0, total_frames - 1)
+        else:
+            random_frame_index = frame_num_input
+
+        # Set the frame position to the random index
+        cap.set(cv2.CAP_PROP_POS_FRAMES, random_frame_index)
+
+        # Read the frame at the random index
+        ret, frame_bgr = cap.read()
+
+        # Convert the frame from BGR to RGB
+        frame_rgb = Utils.bgr_to_rgb(frame_bgr)
+
+        # Plot the first frame using matplotlib
+        Utils.plot_img_rgb(frame_rgb)
+
+        return frame_bgr, True, random_frame_index
+
+    @staticmethod
+    def list_videos(path):
+        extension = ".mp4"
+        l_videos_downloaded = os.listdir(path)
+
+        # Set of already downloaded videos
+        s_videos_downloaded = set()
+
+        for vid in l_videos_downloaded:
+            if vid.endswith(extension):
+                vid_id = vid.split(extension)[0]
+                s_videos_downloaded.add(vid_id)
+        return s_videos_downloaded
+
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    #      Utils for Template Matching
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    # Template matching means selecting a frame
+    # that is similar to the reference court image
+    # so that we can infer the corners of that frame
+    # thanks to the labelled corners of the reference court
     @staticmethod
     def path_video(video_id):
         return f'{PATH_VIDEOS}/{video_id}.mp4'

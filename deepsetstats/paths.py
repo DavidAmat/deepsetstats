@@ -12,7 +12,6 @@ from os.path import join as j
 PATH_VIDEOS = "videos"
 PATH_IMAGES = "images"
 
-
 # --------------------------------------- #
 #      Grand Slams
 # --------------------------------------- #
@@ -101,3 +100,15 @@ PATH_MAP_ID2NAME = j(PATH_PK_PICKLE, "map_id2name.pickle")
 PATH_MAP_NAME2ID = j(PATH_PK_PICKLE, "map_name2id.pickle")
 PATH_MAP_CNAME2ID = j(PATH_PK_PICKLE, "map_cname2id.pickle")
 PATH_MAPID2COUNTRY = j(PATH_PK_PICKLE, "map_id2country.pickle")
+
+# --------------------------------------- #
+#      Court Detection
+# --------------------------------------- #
+PATH_DATASET_IMAGES = "images"
+PATH_IMAGES_REFCOURT = j(PATH_DATASET_IMAGES, "ref_court")
+
+# ....................... #
+#    Reference videos
+# ....................... #
+# Path reference videos is unique for Tennist TV and GS
+PATH_REFERENCE_VIDEOS = j(PATH_PQ_TT, "reference_videos.parquet")
