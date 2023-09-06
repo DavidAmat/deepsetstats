@@ -14,6 +14,19 @@ services:
       - /Volumes/Seagate/Datasets/deepsetstats/tennistv:/usr/src/app/videos
     env_file:
       - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: dss_db
+      POSTGRES_USER: dss
+      POSTGRES_PASSWORD: dss
+    volumes:
+      - my-db:/var/lib/postgresql/data
+    networks:
+      - shared
 
 networks:
   shared:
