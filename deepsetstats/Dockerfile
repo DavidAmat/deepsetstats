@@ -20,7 +20,8 @@ ENV PYTHONPATH=/usr/src/app
 ENV PATH="/root/.local/bin:${PATH}"
 
 # Install poetry
-RUN pip install poetry sqlalchemy
+RUN pip install poetry
+RUN pip install SQLAlchemy==1.4.22
 # RUN cd /usr/src/app/deepsetstats && poetry config virtualenvs.create false && poetry install
 
 # Setup the Execution Dir and Estimator name

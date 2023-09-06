@@ -4,6 +4,8 @@ import time
 import pandas as pd
 from googleapiclient.discovery import build
 
+from deepsetstats.paths import PATH_WIMBLEDON_VIDEOS
+
 os.chdir("/usr/src/app")
 
 # from deepsetstats.dataset.utils import master_prettify
@@ -15,7 +17,7 @@ API_KEY = os.environ["API_KEY"]
 CHANNEL_ID = "UCNa8NxMgSm7m4Ii9d4QGk1Q"
 
 # Path dataframe
-PATH_WIMBLEDON_VIDEOS = "deepsetstats/dataset/grandslams/parquet/wimbledon_videos.parquet"
+path_parquet = PATH_WIMBLEDON_VIDEOS
 
 # Create a YouTube API client
 youtube = build("youtube", "v3", developerKey=API_KEY)
@@ -77,4 +79,4 @@ for page in range(0, int(pages) + 1):
         time.sleep(3)
 
 df = pd.DataFrame(video_info)
-df.to_parquet(PATH_WIMBLEDON_VIDEOS, engine="pyarrow")
+df.to_parquet(path_parquet, engine="pyarrow")

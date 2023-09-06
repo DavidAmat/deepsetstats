@@ -3,6 +3,7 @@ import time
 
 import pandas as pd
 from googleapiclient.discovery import build
+from deepsetstats.paths import PATH_US_OPEN_VIDEOS
 
 os.chdir("/usr/src/app")
 
@@ -15,7 +16,7 @@ API_KEY = os.environ["API_KEY"]
 CHANNEL_ID = "UCXbboag48Qlr78zzz6SkzkQ"
 
 # Path dataframe
-PATH_US_OPEN_VIDEOS = "deepsetstats/dataset/grandslams/parquet/us_open_videos.parquet"
+
 path_parquet = PATH_US_OPEN_VIDEOS
 
 # Create a YouTube API client

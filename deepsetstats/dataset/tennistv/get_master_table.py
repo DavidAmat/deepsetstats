@@ -8,25 +8,21 @@ from deepsetstats.dataset.utils import (
     extract_tournament_title,
     load_pickle,
 )
+from deepsetstats.paths import (
+    PATH_BIBLE_PLAYERS,
+    PATH_MAP_ID2NAME,
+    PATH_MASTER_TENNIS_TV,
+    PATH_TENNIS_TV_VIDEOS,
+    PATH_TOURNAMENTS_NAMING,
+)
 
 os.system("clear")
 
-# Path dataframe
-PATH_TENNIS_TV_VIDEOS = "deepsetstats/dataset/tennistv/parquet/tennistv_videos.parquet"
-PATH_BIBLE_PLAYERS = "deepsetstats/dataset/players/parquet/bible_players.parquet"
-PATH_TOURNAMENTS_NAMING = (
-    "deepsetstats/dataset/tournaments/parquet/tournaments_tennistv.parquet"
-)
-PATH_MAP_ID2NAME = "deepsetstats/dataset/players/pickle/map_id2name.parquet"
-
-# Output Path
-PATH_MASTER = "deepsetstats/dataset/tennistv/parquet/master.parquet"
-
-# --------------------------------------- #
-# --------------------------------------- #
-# Get datasets
-# --------------------------------------- #
-# --------------------------------------- #
+# ------------------------------------------------- #
+# ------------------------------------------------- #
+#       Get datasets
+# ------------------------------------------------- #
+# ------------------------------------------------- #
 df_tennistv = pd.read_parquet(PATH_TENNIS_TV_VIDEOS, engine="pyarrow")
 df_tour = pd.read_parquet(PATH_TOURNAMENTS_NAMING, engine="pyarrow")
 df_players = pd.read_parquet(PATH_BIBLE_PLAYERS, engine="pyarrow")
@@ -34,7 +30,7 @@ df_players = df_players[df_players["best_ranking"] < 100].copy()
 d1 = load_pickle(PATH_MAP_ID2NAME)
 
 # --------------------------------- #
-# Players
+#   Players
 # --------------------------------- #
 player_common_names = df_players["common_name"].tolist()
 player_common_names_2 = df_players["common_name_2"].tolist()
@@ -42,7 +38,7 @@ player_full_names = df_players["name"].tolist()
 player_ids = df_players["player_id"].tolist()
 
 # --------------------------------- #
-# Tournaments naming in Tennis TV
+#   Tournaments naming in Tennis TV
 # --------------------------------- #
 tournament_names = df_tour["tournament_name"].tolist()
 tournament_ids = df_tour["tournament_id"].tolist()
@@ -52,11 +48,11 @@ tournament_ids = df_tour["tournament_id"].tolist()
 # --------------------------------- #
 dfh = df_tennistv[df_tennistv.title.str.contains("ighlights")]
 
-# --------------------------------------- #
-# --------------------------------------- #
-# Create master table
-# --------------------------------------- #
-# --------------------------------------- #
+# ------------------------------------------------- #
+# ------------------------------------------------- #
+#       Create Master Table for Tennis TV videos
+# ------------------------------------------------- #
+# ------------------------------------------------- #
 ept = extract_players_title
 ett = extract_tournament_title
 
@@ -111,4 +107,4 @@ cols_tt = ["title", "video_id"]
 df_final = pd.merge(df_final, df_tennistv[cols_tt], on="video_id", how="left")
 
 # Writing final dataframe master
-df_final.to_parquet(PATH_MASTER, engine="pyarrow")
+df_final.to_parquet(PATH_MASTER_TENNIS_TV, engine="pyarrow")

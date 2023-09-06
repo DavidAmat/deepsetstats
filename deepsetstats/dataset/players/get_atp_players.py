@@ -1,74 +1,53 @@
 import os
 import pickle
-import re
 
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 
+from deepsetstats.dataset.players.utils import (
+    calculate_date_of_birth,
+    create_link_flag_image,
+    extract_date,
+)
+from deepsetstats.dataset.utils import write_pickle
+from deepsetstats.paths import (
+    PATH_BIBLE_PLAYERS,
+    PATH_FLAGS_COUNTRIES,
+    PATH_MAP_CNAME2ID,
+    PATH_MAP_ID2NAME,
+    PATH_MAP_NAME2ID,
+    PATH_MAPID2COUNTRY,
+    PATH_PLAYERS_RANK,
+    PATH_PQ_PLAYERS,
+    PATHS_HTML_RANKINGS,
+)
+
 os.system("clear")
-
-
-def extract_date(url):
-    """Extracts the date from the URL."""
-    match = re.search(r"\d{4}-\d{2}-\d{2}", url)
-    if match:
-        return match.group(0)
-    else:
-        return None
-
-
-def calculate_date_of_birth(date, age):
-    """Calculates the date of birth given the date and age."""
-    year = int(date[:4])
-    date_of_birth = str(year - age)
-    return date_of_birth
-
-
-def create_link_flag_image(country_code):
-    """Creates a link to the ATP Tour flag image."""
-    link = (
-        "https://www.atptour.com/en/~/media/images/flags/"
-        + country_code.lower()
-        + ".svg"
-    )
-    return link
-
-
-players_ranks = [
-    "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2023-07-31.html",
-    "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2021-08-09.html",
-    "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2015-10-05.html",
-    "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2009-05-11.html",
-    "deepsetstats/dataset/players/html/rankRange=1-1000&rankDate=2003-09-29.html",
-    "deepsetstats/dataset/players/html/rankRange=1-5000&rankDate=1998-09-28.html",
-    "deepsetstats/dataset/players/html/rankRange=1-5000&rankDate=1990-12-17.html",
-    "deepsetstats/dataset/players/html/rankRange=1-5000&rankDate=1985-12-09.html",
-]
 
 results_flag = {
     "country": [],
     "flag_url": [],
 }
-
 results = {}
 
 
-# --------------------------------------- #
-# --------------------------------------- #
-# Iterating on Ranking pages
-# --------------------------------------- #
-# --------------------------------------- #
+# ------------------------------------------------- #
+# ------------------------------------------------- #
+#      Iterate on Ranking ATP Pages
+# ------------------------------------------------- #
+# ------------------------------------------------- #
 # Each ranking page has a different date range
-for it_rank, rank_file in enumerate(players_ranks):
+for it_rank, rank_file in enumerate(PATHS_HTML_RANKINGS):
     print("It rank:", it_rank)
     results_rank = {"name": [], "year_birth": [], "country": [], "ranking": []}
 
     # Extract the year of the rank page
-    # 2023
     date_rank = extract_date(rank_file)
 
-    # Read the local html of that ranking
+    # --------------------------------------- #
+    #   Parse HTML of Ranking
+    # --------------------------------------- #
     with open(rank_file, "r", encoding="utf-8") as file:
         html_content = file.read()
 
@@ -83,6 +62,10 @@ for it_rank, rank_file in enumerate(players_ranks):
 
     # Find all tr elements within the tbody
     tr_elements = tbody.find_all("tr")
+
+    # **************************************** #
+    #   Iterate on each player (row of table)
+    # **************************************** #
 
     # Each table row (tr) it's a player ranking
     for it_player, tr in enumerate(tr_elements):
@@ -118,18 +101,32 @@ for it_rank, rank_file in enumerate(players_ranks):
             flag_url = create_link_flag_image(country)
             results_flag[country] = flag_url
 
+    # **************************************** #
+    #    Persists ranking of that year
+    # **************************************** #
     print("Finished Rank", date_rank)
     results[date_rank] = results_rank
     PATH_PLAYERS_RANK_DATE = (
-        f"deepsetstats/dataset/players/parquet/players_{date_rank}.parquet"
+        f"{PATH_PQ_PLAYERS}/players_{date_rank}.parquet"
     )
     df_rank_date = pd.DataFrame(data=results_rank)
     df_rank_date.to_parquet(PATH_PLAYERS_RANK_DATE, engine="pyarrow")
     print("Saved df:", PATH_PLAYERS_RANK_DATE)
 
+
+# ------------------------------------------------- #
+# ------------------------------------------------- #
+#      Persist Rankings of ALL years together
+# ------------------------------------------------- #
+# ------------------------------------------------- #
+
+# --------------------------------------- #
+#      Players Table of rankings
+# --------------------------------------- #
 # Saving final
 print("Saving final")
-PATH_PLAYERS_RANK = "deepsetstats/dataset/players/parquet/players.parquet"
+
+# Persist rankings
 df_final = pd.DataFrame()
 for dt_rank in results:
     df_dt_rank = pd.DataFrame(results[dt_rank])
@@ -138,23 +135,24 @@ for dt_rank in results:
 df_final.to_parquet(PATH_PLAYERS_RANK, engine="pyarrow")
 
 
-# Saving final results flag
-PATH_FLAGS_COUNTRIES = "deepsetstats/dataset/players/flags/flags.pickle"
+# --------------------------------------- #
+#      Persisting Flags results
+# --------------------------------------- #
+print("Dumping flags into pickle:", PATH_FLAGS_COUNTRIES)
+
 # Open the pickle file in binary read mode
 with open(PATH_FLAGS_COUNTRIES, "wb") as file:
     # Load the dictionary from the pickle file
     pickle.dump(results_flag, file)
 
-print("Dumped flags into pickle:", PATH_FLAGS_COUNTRIES)
+# --------------------------------------- #
+#   Create the best ranking for each player
+# --------------------------------------- #
+# Best ranking is a way to incorporate players that in previous rankings
+# where top players, but the current ranking they don't appear (i.e Federer)
+# This way the database of players will be totally updated with them, even if they are
+# historical players that used to be top 50 in these days
 
-# -------------------------------------------- #
-# -------------------------------------------- #
-#   Final setting of the player dataset
-# -------------------------------------------- #
-# -------------------------------------------- #
-PATH_PLAYERS_RANK = (
-    "deepsetstats/dataset/players/parquet/players.parquet"  # TODO: remove
-)
 df = pd.read_parquet(PATH_PLAYERS_RANK, engine="pyarrow")
 unique_players = df[["name", "country"]].drop_duplicates()
 
@@ -168,7 +166,13 @@ unique_players["best_ranking"] = (
     unique_players["best_ranking"].fillna(99999).astype(int)
 )
 
-# Count players by country. If a player has multiple occurrences, we will put the name of the country at the end
+# --------------------------------------- #
+#   Resolve multiple players countries
+# --------------------------------------- #
+# Count players by country. If a player has multiple occurrences,
+# we will put the name of the country at the end
+# There are very few cases, but two players may have the same name
+# but be from different nationalities
 all_players_count_countries = (
     unique_players.groupby("name")["country"].count().reset_index()
 )
@@ -180,6 +184,17 @@ unique_players_rep = pd.merge(
     on="name",
     how="left",
 )
+
+# --------------------------------------- #
+#   Create name columns we will look for
+# --------------------------------------- #
+# When inspecting a YouTube video title, we will look for a match
+# of the entire name, but if the entire name does not appear but the surname does
+# we want to have the "common_name" (i.e surname) in a column to look for it too
+# Since names are complex, we don't know how to split surname and name for composed names
+# like Juan Carlos Ferrero. We create two columns, one that splits "Juan - Carlos Ferrero "
+# and another that splits it into "Juan Carlos - Ferrero".
+
 dfp = pd.merge(df, unique_players_rep, on=["name", "country"], how="left")
 dfp["final_name"] = np.where(
     dfp["repeated_name"] > 1, dfp["name"] + " " + dfp["country"], dfp["name"]
@@ -187,6 +202,10 @@ dfp["final_name"] = np.where(
 # Get name and surname
 dfp[["first_name", "common_name"]] = dfp["name"].str.split(n=1, expand=True)
 dfp[["first_name_2", "common_name_2"]] = dfp["name"].str.rsplit(n=1, expand=True)
+
+# --------------------------------------- #
+#   Remove duplicates
+# --------------------------------------- #
 # Get away of the duplicates of multiple rankings
 cols = [
     "name",
@@ -200,6 +219,10 @@ cols = [
 dfpf = dfp[cols].drop_duplicates()
 dfpf.drop("name", axis=1, inplace=True)
 dfpf.rename(columns={"final_name": "name"}, inplace=True)
+
+# --------------------------------------- #
+#   Create player_id
+# --------------------------------------- #
 dfpf["player_id"] = dfpf.index
 
 d_id_name = {}  # player-id 2 name
@@ -221,32 +244,16 @@ for _, row in dfpf.iterrows():
         d_common_name_to_id[common_name2] = player_id
     d_name_id[player_name] = player_id
 
-
-PATH_BIBLE_PLAYERS = "deepsetstats/dataset/players/parquet/bible_players.parquet"
-PATH_MAP_ID2NAME = "deepsetstats/dataset/players/pickle/map_id2name.parquet"
-PATH_MAP_NAME2ID = "deepsetstats/dataset/players/parquet/map_name2id.parquet"
-PATH_MAP_CNAME2ID = "deepsetstats/dataset/players/parquet/map_cname2id.parquet"
-PATH_MAPID2COUNTRY = "deepsetstats/dataset/players/parquet/map_id2country.parquet"
-
-
-def write_pickle(path, di):
-    with open(path, "wb") as file:
-        # Load the dictionary from the pickle file
-        pickle.dump(di, file)
-
-
-def load_pickle(path):
-    with open(path, "rb") as file:
-        # Load the dictionary from the pickle file
-        data = pickle.load(file)
-    return data
-
-
-write_pickle(PATH_MAP_ID2NAME, d_id_name)
-write_pickle(PATH_MAP_NAME2ID, d_name_id)
-write_pickle(PATH_MAP_CNAME2ID, d_common_name_to_id)
-write_pickle(PATH_MAPID2COUNTRY, d_id_country)
-dfpf.to_parquet(PATH_BIBLE_PLAYERS, engine="pyarrow")
+# --------------------------------------- #
+#   Persist table
+# --------------------------------------- #
+# TODO: put True to enable saving
+if False:
+    write_pickle(PATH_MAP_ID2NAME, d_id_name)
+    write_pickle(PATH_MAP_NAME2ID, d_name_id)
+    write_pickle(PATH_MAP_CNAME2ID, d_common_name_to_id)
+    write_pickle(PATH_MAPID2COUNTRY, d_id_country)
+    dfpf.to_parquet(PATH_BIBLE_PLAYERS, engine="pyarrow")
 
 # d1 = load_pickle(PATH_MAP_ID2NAME)
 # d2 = load_pickle(PATH_MAP_NAME2ID)

@@ -1,11 +1,25 @@
+"""
+This script basically converts the tournaments naming from the official ATP website
+to the tournaments namings that appear in the YouTube video titles of the Tennis TV captions.
+This is why we need to create a new column named "tournament_name" in order to match
+exactly to the name that Tennis TV puts in its videos in YouTube.
+"""
+
 import pandas as pd
 
 from deepsetstats.dataset.tournaments.constants import TOURNAMENT_NAMING
+from deepsetstats.paths import PATH_TOURNAMENTS, PATH_TOURNAMENTS_NAMING
 
-PATH_TOURNAMENTS = "deepsetstats/dataset/tournaments/parquet/tournaments.parquet"
-
+# --------------------------------------- #
+#     Load Tournament namings from ATP
+# --------------------------------------- #
+# Load tournaments tables
 df = pd.read_parquet(PATH_TOURNAMENTS, engine="pyarrow")
 
+
+# ------------------------------------------------------------- #
+#    Map tournament name to Tennis TV common used name
+# ------------------------------------------------------------- #
 # Grand slams
 grandslam = df.query("level in ('grandslam')").copy()
 grandslam["tournament_name"] = grandslam["city"].map(TOURNAMENT_NAMING["GRANDSLAM"])
@@ -29,11 +43,9 @@ tour_finals["tournament_name"] = tour_finals["city"].map(
     TOURNAMENT_NAMING["ATP_FINALS"]
 )
 
-
-# Print the extracted data
-PATH_TOURNAMENTS_NAMING = (
-    "deepsetstats/dataset/tournaments/parquet/tournaments_tennistv.parquet"
-)
+# --------------------------------------- #
+#      Persist Tournament namings
+# --------------------------------------- #
 df_all = pd.concat([grandslam, tour_1000, tour_500, tour_250, tour_finals])
 df_all["tournament_id"] = range(len(df_all))
 df_all.reset_index(drop=True, inplace=True)

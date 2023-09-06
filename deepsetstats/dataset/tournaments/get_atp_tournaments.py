@@ -4,6 +4,8 @@ from datetime import datetime
 import pandas as pd
 from bs4 import BeautifulSoup
 
+from deepsetstats.paths import PATH_TOURNAMENTS, PATH_TOURNAMENTS_HTML
+
 format = """
     {
         "tournament_level": ["1000", "250", "grandslam"],
@@ -29,8 +31,7 @@ results = {
 TOURNAMENT_LEVELS = {"250", "500", "1000", "grandslam"}
 
 # Read the HTML file
-PATH_HTML = "deepsetstats/dataset/tournaments/html/tournaments.html"
-with open(PATH_HTML, "r", encoding="utf-8") as file:
+with open(PATH_TOURNAMENTS_HTML, "r", encoding="utf-8") as file:
     html_content = file.read()
 
 # Parse the HTML content using Beautiful Soup
@@ -134,7 +135,6 @@ for panel in accordion_panels:
         results["court_type"].append(court_type)
 
 # Print the extracted data
-PATH_TOURNAMENTS = "deepsetstats/dataset/tournaments/parquet/tournaments.parquet"
 df = pd.DataFrame(data=results)
 df.to_parquet(PATH_TOURNAMENTS, engine="pyarrow")
 print(df)

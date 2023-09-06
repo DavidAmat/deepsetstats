@@ -9,23 +9,18 @@ from deepsetstats.dataset.utils import (
     extract_tournament_title,
     load_pickle,
 )
-
-os.system("clear")
-
-# Path dataframe
-PATH_US_OPEN_VIDEOS = "deepsetstats/dataset/grandslams/parquet/us_open_videos.parquet"
-PATH_AUSTRALIA_OPEN_VIDEOS = "deepsetstats/dataset/grandslams/parquet/australia_open_videos.parquet"
-PATH_ROLANDGARROS_VIDEOS = "deepsetstats/dataset/grandslams/parquet/roland_garros_videos.parquet"
-PATH_WIMBLEDON_VIDEOS = "deepsetstats/dataset/grandslams/parquet/wimbledon_videos.parquet"
-PATH_TOURNAMENTS_NAMING = (
-    "deepsetstats/dataset/tournaments/parquet/tournaments_tennistv.parquet"
+from deepsetstats.paths import (
+    PATH_AUSTRALIA_OPEN_VIDEOS,
+    PATH_BIBLE_PLAYERS,
+    PATH_MAP_ID2NAME,
+    PATH_MASTER_GS,
+    PATH_ROLANDGARROS_VIDEOS,
+    PATH_TOURNAMENTS_NAMING,
+    PATH_US_OPEN_VIDEOS,
+    PATH_WIMBLEDON_VIDEOS,
 )
 
-PATH_BIBLE_PLAYERS = "deepsetstats/dataset/players/parquet/bible_players.parquet"
-PATH_MAP_ID2NAME = "deepsetstats/dataset/players/pickle/map_id2name.parquet"
-
-# Output Path
-PATH_MASTER = "deepsetstats/dataset/grandslams/parquet/master.parquet"
+os.system("clear")
 
 # --------------------------------------- #
 # --------------------------------------- #
@@ -63,7 +58,7 @@ for _, row in df_tour[df_tour["level"] == "grandslam"].iterrows():
     d_ids_grandslams[row["tournament_name"]] = row["tournament_id"]
 
 # --------------------------------- #
-# Tennis TV Get Videos of Highlights
+# Grand Slams Get Videos of Highlights
 # --------------------------------- #
 df_all_grands = pd.concat([df_us, df_rg, df_ao, df_wb])
 mask1 = df_all_grands.title.str.contains("ighlights")
@@ -151,4 +146,4 @@ df_final.sort_values("year", ascending=False)
 
 
 # Writing final dataframe master
-df_final.to_parquet(PATH_MASTER, engine="pyarrow")
+df_final.to_parquet(PATH_MASTER_GS, engine="pyarrow")

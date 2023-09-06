@@ -4,6 +4,8 @@ import time
 import pandas as pd
 from googleapiclient.discovery import build
 
+from deepsetstats.paths import PATH_TENNIS_TV_VIDEOS
+
 os.chdir("/usr/src/app")
 
 # from deepsetstats.dataset.utils import master_prettify
@@ -13,9 +15,6 @@ API_KEY = os.environ["API_KEY"]
 
 # Tennis TV Channel
 CHANNEL_ID = "UCbcxFkd6B9xUU54InHv4Tig"
-
-# Path dataframe
-PATH_TENNIS_TV_VIDEOS = "deepsetstats/dataset/tennistv/parquet/tennistv_videos.parquet"
 
 # Create a YouTube API client
 youtube = build("youtube", "v3", developerKey=API_KEY)
