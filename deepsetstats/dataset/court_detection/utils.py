@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import ast
 import os
 import random
 import re
@@ -211,11 +212,53 @@ class Utils:
         return ax
 
     @staticmethod
-    def plot_court(ax, court_points):
+    def plot_court(ax, court_points, annotate=False):
         # Extract court points and scatter them as black points
         court_points = np.array(court_points, dtype=int)
         ax.scatter(court_points[:, 0], court_points[:, 1], c='black', s=5)
+
+        if annotate:
+            # Iterate over each court point and annotate its number
+            for i, court_point in enumerate(court_points):
+                ax.annotate(str(i), court_point, va='center', ha='center', fontsize=14)
         return ax
+
+    @staticmethod
+    def plot_frame_with_keypoints(video_id, frame_num, size, court_points=None, net_points=None):
+        """
+        Takes a video_id, finds it, loads the frame specified
+        Takes two optional point coordinates:
+        - court_points: X,Y pairs of each point to scatter in the frame
+            [(374.6, 757.1),
+            (1239.1, 205.3)]
+        - net_points: X,Y pairs of each corner of a rectangle
+            [(525.21, 302.08), (1410.6, 302.08), (1410.6, 382.6), (525.21, 382.6)]
+        """
+        # Path of video
+        path_video = Utils.path_video(video_id=video_id)
+
+        # Get video
+        cap = Utils.get_video(path_video)
+
+        # Load video frame
+        frame = Utils.capture_frame(cap, frame_num)
+
+        # Close the video capture
+        cap.release()
+
+        # Plot frame
+        fig, ax = Utils.plot_frame(frame, size=size)
+
+        # Plot net
+        if net_points is not None:
+            ax = Utils.plot_net(ax, net_points, frame)
+
+        # Plot court
+        if court_points is not None:
+            ax = Utils.plot_court(ax, court_points, annotate=True)
+
+        # Show the plot
+        plt.show()
 
     @staticmethod
     def get_patch(image, court_points, idx, w=25):
@@ -436,3 +479,21 @@ class Utils:
         n_match_high_conf = np.sum(l_bc < THRES_BC_HIGH_CONF)
         confidence = n_match_low_conf + n_match_high_conf
         return confidence
+
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    #      Utils for Template Matching
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    def psql_lol_to_numpy(input_string):
+        # Remove the outer curly braces to make it a valid list of sets
+        input_string = input_string.strip('{}')
+
+        # Split the string into individual sets as strings
+        point_sets = input_string.split('},{')
+
+        # Parse each set as a list of floats using ast.literal_eval
+        point_lists = [ast.literal_eval('[' + s + ']') for s in point_sets]
+
+        # Convert the list of lists to a NumPy array
+        return np.array(point_lists)

@@ -11,6 +11,7 @@ from os.path import join as j
 # ------------------------------------------------- #
 PATH_VIDEOS = "videos"
 PATH_IMAGES = "images"
+PATH_ANNOT = "annotations"
 
 # --------------------------------------- #
 #      Grand Slams
@@ -112,3 +113,8 @@ PATH_IMAGES_REFCOURT = j(PATH_DATASET_IMAGES, "ref_court")
 # ....................... #
 # Path reference videos is unique for Tennist TV and GS
 PATH_REFERENCE_VIDEOS = j(PATH_PQ_TT, "reference_videos.parquet")
+
+# Annotations
+PATH_ANNOT_REF = j(PATH_ANNOT, "reference_courts")
+PATH_ANNOTATIONS_REFERENCE = j(PATH_ANNOT_REF, "annotations.xml")
+PATH_ANNOTATIONS_REFERENCE_PARQUET = j(PATH_ANNOT_REF, "annotations.parquet")
