@@ -1,6 +1,7 @@
 # Ignore folder videos
 videos/
 .DS_Store
+deepsetstats/dataset/frames/parquet/template_matching/**
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

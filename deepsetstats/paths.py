@@ -6,12 +6,32 @@ from os.path import join as j
 
 # ------------------------------------------------- #
 # ------------------------------------------------- #
+#      Src
+# ------------------------------------------------- #
+# ------------------------------------------------- #
+PATH_CONFIG = "deepsetstats/src/config/config.yaml"
+
+# ------------------------------------------------- #
+# ------------------------------------------------- #
 #      Dataset
 # ------------------------------------------------- #
 # ------------------------------------------------- #
-PATH_VIDEOS = "videos"
+PATH_VIDEOS_MAIN = "videos"
 PATH_IMAGES = "images"
 PATH_ANNOT = "annotations"
+
+# Path of videos in the external hard drive
+PATH_VIDEOS = j(PATH_VIDEOS_MAIN, "all")
+PATH_FRAMES = j(PATH_IMAGES, "all")
+
+# --------------------------------------- #
+#      Master of Videos
+# --------------------------------------- #
+PATH_DATASET_VIDEOS = "deepsetstats/dataset/videos"
+PATH_DATASET_VIDEOS_PQ = j(PATH_DATASET_VIDEOS, "parquet")
+PATH_MASTER_VIDEOS = j(PATH_DATASET_VIDEOS_PQ, "master_videos.parquet")
+PATH_VIDEOS_METADATA = j(PATH_DATASET_VIDEOS_PQ, "metadata_videos.parquet")
+PATH_VIDEOS_ERRORED = j(PATH_DATASET_VIDEOS_PQ, "error_videos.parquet")
 
 # --------------------------------------- #
 #      Grand Slams
@@ -118,3 +138,34 @@ PATH_REFERENCE_VIDEOS = j(PATH_PQ_TT, "reference_videos.parquet")
 PATH_ANNOT_REF = j(PATH_ANNOT, "reference_courts")
 PATH_ANNOTATIONS_REFERENCE = j(PATH_ANNOT_REF, "annotations.xml")
 PATH_ANNOTATIONS_REFERENCE_PARQUET = j(PATH_ANNOT_REF, "annotations.parquet")
+
+
+# --------------------------------------- #
+#      Images
+# --------------------------------------- #
+PATH_DATASET_TMP_MATCH = "deepsetstats/dataset/template_matching"
+PATH_TMP_MATCH_PQ = j(PATH_DATASET_TMP_MATCH, "parquet")
+
+# ....................... #
+#    Template Matching
+# ....................... #
+# Temporal directory for the parallelized partitioned template matching results
+PATH_TEMPLATE_MATCHING = j(PATH_TMP_MATCH_PQ, "template_matching")
+
+# The previous parallelized partiioned parquet will be converted into a single parquet
+# the previous one will be removed, so this will be the final used
+PATH_TEMPLATE_MATCHING_SINGLE_PQ = j(PATH_TMP_MATCH_PQ, "template_matching.parquet")
+
+# ....................... #
+#    Intervals
+# ....................... #
+PATH_INTERVALS = j(PATH_TMP_MATCH_PQ, "intervals.parquet")
+PATH_INTERVALS_NOT_COURT = j(PATH_TMP_MATCH_PQ, "intervals_notcourt.parquet")
+
+# --------------------------------------- #
+#      Dataset Courts
+# --------------------------------------- #
+PATH_FOLDER_DATASET_COURT = "deepsetstats/dataset/dataset_court"
+PATH_PQ_COURT = j(PATH_FOLDER_DATASET_COURT, "parquet")
+PATH_DATASET_COURT = j(PATH_PQ_COURT, "dataset_court.parquet")
+PATH_IMAGES_DATASET_COURT = j(PATH_IMAGES, "all/dataset_court")

@@ -6,21 +6,43 @@ import random
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from os.path import join as jp
-
+import threading
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 from sklearn.metrics import mean_squared_error as mse
-
+from torchvision.io import VideoReader
+from typing import Dict
 from deepsetstats.dataset.court_detection.constants import (
     THRES_BC_HIGH_CONF,
     THRES_BC_LOW_CONF,
 )
 from deepsetstats.paths import PATH_VIDEOS
+from deepsetstats.paths import (
+    PATH_TEMPLATE_MATCHING
+)
+from os.path import join as j
 
 
 class Utils:
+
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    #      Utils for Frames
+    # ------------------------------------------------- #
+    # ------------------------------------------------- #
+    @staticmethod
+    def get_ref_annot(df_ref, tournament_id):
+        # Get the reference court points and net points at the given frame number
+        s = df_ref.loc[df_ref["tournament_id"] == tournament_id].reset_index(drop=True).loc[0]
+
+        video_id = s.video_id  # "DhnpBjrgb34"
+        path = Utils.path_video(video_id)
+        frame_num = s.frame_id
+        court_points = np.vstack(s.court)
+        net_points = np.vstack(s.net)
+        return video_id, path, frame_num, court_points, net_points
 
     # ------------------------------------------------- #
     # ------------------------------------------------- #
@@ -43,7 +65,20 @@ class Utils:
 
     @staticmethod
     def create_img_name(level, tournament_id, video_id, frame_num):
+        """
+        Method to create the reference court images used to set the reference keypoints
+        of the corners of the tennis court
+        """
         return f"ref___l{level}___t{tournament_id}___v{video_id}___f{frame_num}.png"
+
+    @staticmethod
+    def create_frame_name(tournament_id, video_id, interval_id, frame_num):
+        """
+        Method to create the images of the dataset, linking to a tournament, a video
+        the interval number of the selection of a range of frames
+        and the frame number
+        """
+        return f"t{tournament_id}___v{video_id}___i{interval_id}___f{frame_num}.png"
 
     @staticmethod
     def parse_img_ref(string):
@@ -149,7 +184,12 @@ class Utils:
         return frame
 
     @staticmethod
-    def get_video(video_path):
+    def get_video(video_path, torch=False):
+        """
+        Opens a video either
+        """
+        if torch:
+            return VideoReader(src=video_path, stream="video")
         return cv2.VideoCapture(video_path)
 
     @staticmethod
@@ -181,10 +221,10 @@ class Utils:
 
         # Add content to each subplot (replace this with your data)
         idx = 0
-        for i in range(nrows):
-            for j in range(ncols):
+        for ii in range(nrows):
+            for jj in range(ncols):
                 frame = frames[idx]
-                ax = axes[i, j]
+                ax = axes[ii, jj]
                 ax.imshow(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
                 idx += 1
 
@@ -195,13 +235,21 @@ class Utils:
         plt.show()
 
     @staticmethod
-    def plot_frame(frame, size=(14, 11)):
+    def plot_frame(frame, size=(14, 11), fig=None, ax=None):
         # Create a figure and axis for plotting
-        fig, ax = plt.subplots(figsize=size)
+        if ax is None:
+            fig, ax = plt.subplots(figsize=size)
 
         # Display the frame
         ax.imshow(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
         return fig, ax
+
+    @staticmethod
+    def plot_frame_video(video_id, frame_num):
+        video_path = Utils.path_video(video_id)
+        frames = {}
+        Utils.read_frame(video_path, frame_num, frames)
+        Utils.plot_frame(frames[frame_num])
 
     @staticmethod
     def plot_net(ax, net_points, frame):
@@ -259,6 +307,12 @@ class Utils:
 
         # Show the plot
         plt.show()
+
+    @staticmethod
+    def plot_ref_points(img, court_points):
+        fig, ax = Utils.plot_frame(img, size=(8, 8))
+        ax = Utils.plot_court(ax, court_points, annotate=True)
+        return fig, ax
 
     @staticmethod
     def get_patch(image, court_points, idx, w=25):
@@ -437,6 +491,13 @@ class Utils:
         return bc
 
     @staticmethod
+    def get_bc_patches_similarities(patches_query_img, reference_histogram_patches):
+        return [
+            Utils.patch_similarity_on_template(patches_query_img[idx], reference_histogram_patches[idx])
+            for idx in range(len(patches_query_img))
+        ]
+
+    @staticmethod
     def patch_similarity_on_template(q_patch, t_hist):
         patch_q_hist = Utils.get_hist(q_patch)
 
@@ -497,3 +558,117 @@ class Utils:
 
         # Convert the list of lists to a NumPy array
         return np.array(point_lists)
+
+    def get_histogram_reference(video_id, frame_num, fs):
+        """
+        Performs the Hue (from HSV) histogram of colors
+        for each of the 4 patches of the frame number of a given video_id
+        This video id should be a reference court (from get_ref_annot function)
+        fs dictates the fractions of the dimensions of the X patches
+        """
+        # Get video path
+        path = Utils.path_video(video_id)
+
+        # Get cap for reference image (template)
+        t_cap = Utils.get_video(path)
+
+        # Load reference frame
+        t_img = Utils.capture_frame(t_cap, frame_num)
+
+        # Patch reference frame
+        patches_t_img = Utils.generate_patches_of_image(t_img, fs)
+
+        # Histogram of Hue colors of reference frame
+        l_t_hist = [Utils.get_hist(ii_patch) for ii_patch in patches_t_img]
+        return l_t_hist
+
+    def read_frame(video_path, frame_num, frames):
+        cap = cv2.VideoCapture(video_path)
+        cap.set(cv2.CAP_PROP_POS_FRAMES, frame_num)
+
+        ret, frame = cap.read()
+
+        if ret:
+            frames[frame_num] = frame
+        else:
+            print(f"Failed to read frame {frame_num}")
+
+        cap.release()
+
+    def get_frames(video_path, frame_numbers) -> Dict:
+        """
+        Get a bunch of frame numbers and loads them concurrently with threading
+        """
+        frames = {}  # Dictionary to store frames
+
+        # Create and start a thread for each frame number
+        threads = []
+        for frame_num in frame_numbers:
+            thread = threading.Thread(target=Utils.read_frame, args=(video_path, frame_num, frames))
+            thread.start()
+            threads.append(thread)
+
+        # Wait for all threads to finish
+        for thread in threads:
+            thread.join()
+        return frames
+
+    def plot_sequence_images(l_images):
+        for ff in l_images:
+            Utils.plot_frame(ff)
+
+    def plot_sequence_frames(video_id, frame_numbers):
+        path_video = Utils.path_video(video_id)
+        frs = Utils.get_frames(path_video, frame_numbers)
+
+        # Sort the dictionary of frames by appearance
+        # as threading may have load them in different orders
+        frs = {k: frs[k] for k in sorted(frs)}
+        for fnum, ff in frs.items():
+            print("Frame num: ", fnum)
+            Utils.plot_frame(ff)
+
+    def check_video_exist_template_matching(video_id, tournament_id):
+        path = j(PATH_TEMPLATE_MATCHING, f"tournament_id={tournament_id}", f"video_id={video_id}")
+        return os.path.exists(path)
+
+    @staticmethod
+    def plot_range_frames(video_id, frame_start, frame_end, fps=60, step_size=None, num_columns=3, figsize=(14, 11)):
+        # Step size is the number of frames to skip between ploting
+        # two frames, if not provided, it will be 1s (i.e the FPS rate)
+        if step_size is None:
+            step_size = fps
+        # Path video
+        path_video = Utils.path_video(video_id)
+
+        # Video capture
+        cap = Utils.get_video(path_video)
+
+        # Sequence of frames
+        l_frames = np.arange(frame_start, frame_end, step_size)
+
+        # Calculate the number of rows needed based on the number of frames and the number of columns (3)
+        num_frames = len(l_frames)
+        num_rows = (num_frames + num_columns - 1) // num_columns  # Ceiling division
+
+        # Create subplots with 3 columns and dynamic number of rows
+        fig, axs = plt.subplots(num_rows, num_columns, figsize=figsize)
+
+        # Flatten the axs array if it's more than one row
+        if num_rows > 1:
+            axs = axs.flatten()
+
+        # Iterate over frames and plot them
+        for i, frame_num in enumerate(l_frames):
+            frame = Utils.get_frame(cap, frame_num)
+            Utils.plot_frame(frame, fig=fig, ax=axs[i])
+            seconds = frame_num / fps
+            axs[i].set_title(f"Frame_num: {frame_num}, Seconds: {seconds:.1f}s", fontsize=8)
+
+        # Remove any empty subplots
+        for i in range(num_frames, num_rows * num_columns):
+            fig.delaxes(axs[i])
+
+        plt.tight_layout()
+        plt.show()
+        return

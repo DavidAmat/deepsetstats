@@ -8,7 +8,7 @@
         {
             "name": "Debug Dataset Video Downloader",
             "type": "python",
-            "python": "/usr/local/bin/python",
+            "python": "/opt/conda/bin/python",
             "request": "launch",
             "program": "/usr/src/app/deepsetstats/dataset/video_downloader.py",
             "console": "integratedTerminal",
@@ -18,7 +18,7 @@
         {
             "name": "Debug Dataset Tournaments",
             "type": "python",
-            "python": "/usr/local/bin/python",
+            "python": "/opt/conda/bin/python",
             "request": "launch",
             "program": "/usr/src/app/deepsetstats/dataset/tournaments/get_atp_tournaments.py",
             "console": "integratedTerminal",
@@ -28,7 +28,7 @@
         {
             "name": "Debug Dataset Players",
             "type": "python",
-            "python": "/usr/local/bin/python",
+            "python": "/opt/conda/bin/python",
             "request": "launch",
             "program": "/usr/src/app/deepsetstats/dataset/players/get_atp_players.py",
             "console": "integratedTerminal",

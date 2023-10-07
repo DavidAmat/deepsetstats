@@ -11,7 +11,8 @@ services:
       - shared
     volumes:
       - .:/usr/src/app
-      - /Volumes/Seagate/Datasets/deepsetstats/tennistv:/usr/src/app/videos
+      - /Volumes/Seagate/Datasets/deepsetstats/tennistv:/usr/src/app/videos/all
+      - /Volumes/Seagate/Datasets/deepsetstats/images:/usr/src/app/images/all
     env_file:
       - .env
     depends_on:

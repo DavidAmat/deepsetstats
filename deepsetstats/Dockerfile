@@ -8,6 +8,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
         python3-dev \
         build-essential \
         wget \
+        htop \
         postgresql-client
 
 # Add Poetry install
