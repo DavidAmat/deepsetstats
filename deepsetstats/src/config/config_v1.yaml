@@ -1,0 +1,15 @@
+paths:
+  data:
+    path: /tmp/dss
+    dirs:
+    - annotations
+    - train_small
+    - test_small
+
+model:
+  params:
+    exp_id: v1_exp
+    batch_size: 2
+    num_epochs: 2
+    lr: 1e-5
+    val_intervals: 5

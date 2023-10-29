@@ -6,6 +6,26 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug Main Trainer",
+            "type": "python",
+            "python": "/opt/conda/bin/python",
+            "request": "launch",
+            "program": "/usr/src/app/deepsetstats/src/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/usr/src/app/",
+        },
+        {
+            "name": "Debug Dataset",
+            "type": "python",
+            "python": "/opt/conda/bin/python",
+            "request": "launch",
+            "program": "/usr/src/app/deepsetstats/src/data/dataset.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/usr/src/app/",
+        },
+        {
             "name": "Debug Dataset Video Downloader",
             "type": "python",
             "python": "/opt/conda/bin/python",

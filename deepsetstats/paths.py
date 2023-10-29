@@ -9,7 +9,7 @@ from os.path import join as j
 #      Src
 # ------------------------------------------------- #
 # ------------------------------------------------- #
-PATH_CONFIG = "deepsetstats/src/config/config.yaml"
+PATH_CONFIG = "deepsetstats/src/config/config_{version}.yaml"
 
 # ------------------------------------------------- #
 # ------------------------------------------------- #
