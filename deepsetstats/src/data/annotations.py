@@ -35,7 +35,7 @@ class AnnotationSet(BaseModel):
     court: XMLCourt
 
 
-class Annotations:
+class AnnotationsReader:
     def __init__(self, path_annotations: Path) -> None:
         self.path_annotations = path_annotations
         self.files_path_annotations = [filename for filename in path_annotations.iterdir() if filename.is_file() and filename.suffix == ".xml"]
@@ -48,7 +48,7 @@ class Annotations:
         ]
 
         # Dictionary of annotations with image_name being the unique key
-        self.annotations = {image_name: annot_set for d_annot_set in self.l_annot_sets for image_name, annot_set in d_annot_set.items()}
+        self.annotations: Dict[str, AnnotationSet] = {image_name: annot_set for d_annot_set in self.l_annot_sets for image_name, annot_set in d_annot_set.items()}
 
     @staticmethod
     def get_box_xml(xml_element: ET.Element, label: str) -> XMLBox:
@@ -175,7 +175,7 @@ if __name__ == "__main__":
     config = Config(version="v1")
     
     t1 = time.time()
-    annot = Annotations(path_annotations=config.path_annotations)
+    annot = AnnotationsReader(path_annotations=config.path_annotations)
     t2 = time.time()
     latency = t2 - t1
     # args = annot.parse_img_name("court___t62___vH6GSW-PNOg8___i0___f11253.png")

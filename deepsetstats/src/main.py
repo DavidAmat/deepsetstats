@@ -10,5 +10,13 @@ Dataset small in Docker container
 """
 
 from deepsetstats.src.utils.inputs import Config
+from deepsetstats.src.data.annotations import AnnotationsReader
 
 config = Config(version="v1")
+
+# Read annotations
+annot_reader = AnnotationsReader(path_annotations=config.path_annotations)
+annot = annot_reader.annotations
+
+# Dummy
+print(len(annot))
